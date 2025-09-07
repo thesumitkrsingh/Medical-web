@@ -1,0 +1,185 @@
+/* :root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+
+/* Dropdown Animation */
+.dropdown-menu {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+
+.collapse.navbar-collapse {
+  transition: all 0.4s ease;
+}
+
+/* Desktop hover effect */
+/* Desktop Hover Sidebar */
+/* 🔹 Desktop Hover Sidebar */
+.social-hover {
+  width: 55px;
+  height: 55px;
+  border-radius: 30px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0 15px;
+}
+.social-hover span {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+.social-hover:hover {
+  width: 160px;
+  justify-content: flex-start;
+}
+.social-hover:hover span {
+  max-width: 100px;
+  opacity: 1;
+}
+
+/* 🔹 Mobile Sidebar */
+.toggle-btn {
+  background: #0072ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: background 0.3s ease;
+}
+.toggle-btn:hover {
+  background: #0056cc;
+}
+
+.mobile-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.4s ease;
+}
+.mobile-icons.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.social-mobile {
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.social-mobile:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* 🔹 Brand Colors */
+.whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+}
+.facebook {
+  background: linear-gradient(135deg, #1877f2, #0d47a1);
+}
+.linkedin {
+  background: linear-gradient(135deg, #0077b5, #004182);
+}
