@@ -7,7 +7,6 @@ import Home from "./components/Home/Home";
 import Services from "./components/services/Services";
 import About from "./components/About";
 import Contact from "./components/Contact/Contact";
-// import Testimonials from "./components/Testimonials";
 
 // Sidebar & Footer
 import SocialSidebar from "./components/SocialSidebar";
@@ -67,23 +66,19 @@ function App() {
 
       {/* ✅ Main Sections */}
       <main>
-        <section id="home">
+        <section id="home" className="full-height">
           <Home />
         </section>
 
-        <section id="services">
+        <section id="services" className="normal-section">
           <Services />
         </section>
 
-        {/* <section id="testimonials">
-          <Testimonials />
-        </section> */}
-
-        <section id="about">
+        <section id="about" className="normal-section">
           <About />
         </section>
 
-        <section id="contact">
+        <section id="contact" className="normal-section">
           <Contact />
         </section>
       </main>
@@ -115,11 +110,17 @@ function App() {
             color: #333;
           }
           
-          section {
+          /* ✅ Home Section full screen */
+          .full-height {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+          }
+
+          /* ✅ Other sections normal padding */
+          .normal-section {
+            padding: 80px 0;
           }
 
           .scroll-to-top {
