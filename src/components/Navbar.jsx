@@ -169,24 +169,19 @@
 // }
 
 // export default Navbar;
-
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "animate.css";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaPinterestP,
-} from "react-icons/fa";
+
+// 🔹 Import logo
+import logo from "../assets/images/logo1.png";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
+      const scrollY = window.scrollY;
+      setScrolled(scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -202,35 +197,21 @@ function Navbar() {
     if (closeBtn) closeBtn.click();
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const phone = e.target.phone.value;
-    const message = e.target.message.value;
-
-    const whatsappMessage = `📅 New Appointment Request\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n📝 Message: ${message}`;
-    window.open(
-      `https://wa.me/919999999999?text=${encodeURIComponent(whatsappMessage)}`,
-      "_blank"
-    );
-    setShowForm(false);
-  };
-
   return (
     <>
       <nav
-        className={`navbar navbar-expand-md shadow-lg fixed-top ${
-          scrolled ? "navbar-colored" : "navbar-transparent"
+        className={`navbar navbar-expand-md fixed-top ${
+          scrolled ? "navbar-colored shadow-sm" : "navbar-transparent"
         }`}
         style={{ padding: "0 40px" }}
       >
         <div className="container-fluid d-flex align-items-center justify-content-between">
-          {/* Brand */}
-          <a className="navbar-brand fw-bold fs-4" href="#">
-            SpectraCore Analytice
+          {/* ✅ Brand / Logo */}
+          <a className="navbar-brand d-flex align-items-center" href="#">
+            <img src={logo} alt="Logo" height="40" />
           </a>
 
-          {/* Mobile toggle */}
+          {/* ✅ Mobile toggle */}
           <button
             className="navbar-toggler"
             type="button"
@@ -241,12 +222,12 @@ function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          {/* Desktop menu */}
+          {/* ✅ Desktop menu */}
           <div
-            className="collapse navbar-collapse justify-content-center d-none d-md-flex"
+            className="collapse navbar-collapse justify-content-center"
             id="navbarNav"
           >
-            <ul className="navbar-nav align-items-md-center text-uppercase fw-bold">
+            <ul className="navbar-nav fw-bold ms-auto">
               {["home", "services", "about", "contact"].map((id) => (
                 <li className="nav-item mx-2" key={id}>
                   <a
@@ -263,52 +244,19 @@ function Navbar() {
             </ul>
           </div>
 
-          {/* Right side */}
-          <div className="d-none d-md-flex align-items-center ms-auto">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-icon mx-2"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-icon mx-2"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-icon mx-2"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="https://pinterest.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-icon mx-2"
-            >
-              <FaPinterestP />
-            </a>
-
+          {/* ✅ Right side button */}
+          <div className="d-none d-md-flex ms-3">
             <button
-              className="btn appointment-btn ms-3"
-              onClick={() => setShowForm(true)}
+              className="btn contact-btn"
+              onClick={(e) => handleNavClick(e, "contact")}
             >
-              📅 Make Appointment
+              Get in Touch
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Offcanvas */}
+      {/* ✅ Mobile Offcanvas */}
       <div
         className="offcanvas offcanvas-end"
         tabIndex="-1"
@@ -325,7 +273,7 @@ function Navbar() {
           ></button>
         </div>
         <div className="offcanvas-body">
-          <ul className="navbar-nav text-uppercase fw-bold mb-3">
+          <ul className="navbar-nav fw-bold mb-3">
             {["home", "services", "about", "contact"].map((id) => (
               <li className="nav-item" key={id}>
                 <a
@@ -340,185 +288,70 @@ function Navbar() {
               </li>
             ))}
           </ul>
-
-          <div className="d-flex align-items-center mt-3">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              className="nav-icon mx-2"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              className="nav-icon mx-2"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              className="nav-icon mx-2"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="https://pinterest.com"
-              target="_blank"
-              className="nav-icon mx-2"
-            >
-              <FaPinterestP />
-            </a>
-          </div>
-
           <button
-            className="btn appointment-btn mt-4 w-100"
-            onClick={() => setShowForm(true)}
+            className="btn contact-btn w-100"
+            onClick={(e) => handleNavClick(e, "contact")}
           >
-            📅 Make Appointment
+            Get in Touch
           </button>
         </div>
       </div>
 
-      {/* Styles */}
+      {/* ✅ Styles */}
       <style>
         {`
+          body {
+            font-family: 'Poppins', sans-serif;
+          }
+
+          /* 🔹 Transparent navbar by default */
           .navbar-transparent {
-            background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(12px);
+            background: transparent;
             transition: background 0.6s ease, color 0.6s ease;
           }
+
+          /* 🔹 On scroll navbar */
+          .navbar-colored {
+            background: #0b1b36; 
+            transition: background 0.6s ease, color 0.6s ease;
+          }
+
           .navbar-transparent .nav-link,
           .navbar-transparent .navbar-brand,
-          .navbar-transparent .nav-icon {
-            color: #fff !important;
-          }
-
-          .navbar-colored {
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            transition: background 0.6s ease, color 0.6s ease;
-          }
           .navbar-colored .nav-link,
-          .navbar-colored .navbar-brand,
-          .navbar-colored .nav-icon {
+          .navbar-colored .navbar-brand {
             color: #fff !important;
           }
 
-          /* 🔹 Smooth hover effect for links */
+          /* 🔹 Nav link styles */
           .nav-link {
-            position: relative;
-            color: inherit !important;
-            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 15px;
+            font-weight: 500;
+            color: #fff !important;
+            padding: 8px 12px;
+            transition: color 0.3s ease;
           }
           .nav-link:hover {
             color: #00c6ff !important;
-            transform: translateY(-2px);
           }
 
-          /* underline animation */
-          .nav-link::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0%;
-            height: 2px;
+          /* 🔹 Button style */
+          .contact-btn {
             background: #00c6ff;
-            transition: width 0.3s ease;
-          }
-          .nav-link:hover::after {
-            width: 100%;
-          }
-
-          .nav-icon {
-            font-size: 1.1rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-          }
-          .nav-icon:hover {
-            color: #00c6ff !important;
-            transform: scale(1.2);
-          }
-
-          .appointment-btn {
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
             color: #fff;
-            font-weight: bold;
-            border-radius: 30px;
-            padding: 8px 18px;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 4px;
+            padding: 8px 20px;
             transition: all 0.3s ease;
+            border: none;
           }
-          .appointment-btn:hover {
-            background: linear-gradient(45deg, #0072ff, #00c6ff);
-            transform: scale(1.05);
-          }
-
-          /* Mobile menu link hover */
-          #mobileMenu .nav-link {
-            color: #333 !important;
-            transition: all 0.3s ease;
-          }
-          #mobileMenu .nav-link:hover {
-            color: #0072ff !important;
-            transform: translateX(5px);
+          .contact-btn:hover {
+            background: #009edb;
+            transform: translateY(-2px);
           }
         `}
       </style>
-
-      {/* Appointment Form Modal */}
-      {showForm && (
-        <div
-          className="modal fade show"
-          style={{ display: "block", background: "rgba(0,0,0,0.6)" }}
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content p-3 rounded-3 shadow-lg">
-              <div className="modal-header">
-                <h5 className="modal-title">📅 Make Appointment</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={() => setShowForm(false)}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-3">
-                    <label className="form-label">Name</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="name"
-                      required
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Phone</label>
-                    <input
-                      type="tel"
-                      className="form-control"
-                      name="phone"
-                      required
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Message</label>
-                    <textarea
-                      className="form-control"
-                      name="message"
-                      rows="3"
-                      required
-                    ></textarea>
-                  </div>
-                  <button type="submit" className="btn w-100 appointment-btn">
-                    Send via WhatsApp
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }

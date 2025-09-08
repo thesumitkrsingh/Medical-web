@@ -69,13 +69,11 @@ function App() {
         <section id="home" className="full-height">
           <Home />
         </section>
-
-        <section id="services" className="normal-section">
-          <Services />
-        </section>
-
         <section id="about" className="normal-section">
           <About />
+        </section>
+        <section id="services" className="normal-section">
+          <Services />
         </section>
 
         <section id="contact" className="normal-section">
