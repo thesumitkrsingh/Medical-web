@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
-import Assistant from './components/Assistant/Assistant';
+import Assistant from "./components/Assistant/Assistant";
 import Navbar from "./components/Navbar";
+
+// Sections
 import Home from "./components/Home/Home";
 import Services from "./components/services/Services";
 import About from "./components/About";
 import Contact from "./components/Contact/Contact";
-import Testimonials from "./components/Testimonials";
+// import Testimonials from "./components/Testimonials";
+
+// Sidebar & Footer
 import SocialSidebar from "./components/SocialSidebar";
 import Footer from "./components/Footer/Footer";
 
-
-
+// Animations
 import AOS from "aos";
 import "aos/dist/aos.css";
+
+// Icons
 import { FaArrowUp } from "react-icons/fa";
 
 function App() {
@@ -44,6 +49,7 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Smooth scroll to top
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -53,9 +59,13 @@ function App() {
 
   return (
     <>
+      {/* ✅ AI Assistant */}
       <Assistant />
+
+      {/* ✅ Navbar */}
       <Navbar />
 
+      {/* ✅ Main Sections */}
       <main>
         <section id="home">
           <Home />
@@ -65,9 +75,9 @@ function App() {
           <Services />
         </section>
 
-        <section id="testimonials">
+        {/* <section id="testimonials">
           <Testimonials />
-        </section>
+        </section> */}
 
         <section id="about">
           <About />
@@ -78,9 +88,11 @@ function App() {
         </section>
       </main>
 
+      {/* ✅ Sidebar & Footer */}
       <SocialSidebar />
       <Footer />
 
+      {/* ✅ Scroll-to-Top Button */}
       <div
         className={`scroll-to-top ${showScroll ? "show" : ""}`}
         onClick={scrollToTop}
@@ -88,6 +100,7 @@ function App() {
         <FaArrowUp />
       </div>
 
+      {/* ✅ CSS */}
       <style>
         {`
           * {
@@ -103,33 +116,12 @@ function App() {
           }
           
           section {
-            padding: 5rem 2rem;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
           }
-          
-          #home {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-          }
-          
-          #services {
-            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-          }
-          
-          #testimonials {
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-          }
-          
-          #about {
-            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
-          }
-          
-          #contact {
-            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-          }
-          
+
           .scroll-to-top {
             position: fixed;
             bottom: 25px;
@@ -145,19 +137,19 @@ function App() {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 1s ease;
             opacity: 0;
             visibility: hidden;
             z-index: 1000;
           }
-          
+
           .scroll-to-top.show {
             opacity: 1;
             visibility: visible;
           }
-          
+
           .scroll-to-top:hover {
-            transform: scale(1.15);
+            transform: scale(1.15) rotate(360deg);
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
           }
         `}
