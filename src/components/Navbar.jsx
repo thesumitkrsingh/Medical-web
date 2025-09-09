@@ -168,20 +168,15 @@
 //   );
 // }
 
-// export default Navbar;
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-// 🔹 Import logo
-import logo from "../assets/images/logo1.png";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrolled(scrollY > 50);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -193,6 +188,7 @@ function Navbar() {
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+    // ✅ Offcanvas close after click
     const closeBtn = document.querySelector("#mobileMenu .btn-close");
     if (closeBtn) closeBtn.click();
   };
@@ -203,12 +199,11 @@ function Navbar() {
         className={`navbar navbar-expand-md fixed-top ${
           scrolled ? "navbar-colored shadow-sm" : "navbar-transparent"
         }`}
-        style={{ padding: "0 40px" }}
       >
-        <div className="container-fluid d-flex align-items-center justify-content-between">
-          {/* ✅ Brand / Logo */}
-          <a className="navbar-brand d-flex align-items-center" href="#">
-            <img src={logo} alt="Logo" height="40" />
+        <div className="container-fluid d-flex align-items-center justify-content-between px-3 px-md-4">
+          {/* ✅ Brand Name */}
+          <a className="navbar-brand fw-bold brand-text" href="#">
+            Spectracore <span>Analytics</span>
           </a>
 
           {/* ✅ Mobile toggle */}
@@ -244,7 +239,7 @@ function Navbar() {
             </ul>
           </div>
 
-          {/* ✅ Right side button */}
+          {/* ✅ Right side button (Desktop only) */}
           <div className="d-none d-md-flex ms-3">
             <button
               className="btn contact-btn"
@@ -258,16 +253,16 @@ function Navbar() {
 
       {/* ✅ Mobile Offcanvas */}
       <div
-        className="offcanvas offcanvas-end"
+        className="offcanvas offcanvas-end bg-dark text-white"
         tabIndex="-1"
         id="mobileMenu"
         aria-labelledby="mobileMenuLabel"
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title">Menu</h5>
+          <h5 className="offcanvas-title text-info">Spectracore Menu</h5>
           <button
             type="button"
-            className="btn-close"
+            className="btn-close btn-close-white"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
           ></button>
@@ -275,9 +270,9 @@ function Navbar() {
         <div className="offcanvas-body">
           <ul className="navbar-nav fw-bold mb-3">
             {["home", "services", "about", "contact"].map((id) => (
-              <li className="nav-item" key={id}>
+              <li className="nav-item mb-2" key={id}>
                 <a
-                  className="nav-link"
+                  className="nav-link text-white"
                   href={`#${id}`}
                   onClick={(e) => handleNavClick(e, id)}
                 >
@@ -288,6 +283,7 @@ function Navbar() {
               </li>
             ))}
           </ul>
+          {/* ✅ Button inside mobile menu */}
           <button
             className="btn contact-btn w-100"
             onClick={(e) => handleNavClick(e, "contact")}
@@ -304,26 +300,34 @@ function Navbar() {
             font-family: 'Poppins', sans-serif;
           }
 
-          /* 🔹 Transparent navbar by default */
           .navbar-transparent {
             background: transparent;
             transition: background 0.6s ease, color 0.6s ease;
           }
 
-          /* 🔹 On scroll navbar */
           .navbar-colored {
-            background: #0b1b36; 
+            background: #0b1b36;
             transition: background 0.6s ease, color 0.6s ease;
           }
 
-          .navbar-transparent .nav-link,
-          .navbar-transparent .navbar-brand,
-          .navbar-colored .nav-link,
-          .navbar-colored .navbar-brand {
-            color: #fff !important;
+          /* 🔹 Navbar padding */
+          .navbar {
+            padding-top: 12px;
+            padding-bottom: 14px;
           }
 
-          /* 🔹 Nav link styles */
+          /* 🔹 Brand text */
+          .brand-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff !important;
+            letter-spacing: 1px;
+          }
+          .brand-text span {
+            color: #00c6ff;
+          }
+
+          /* 🔹 Nav links */
           .nav-link {
             font-size: 15px;
             font-weight: 500;
@@ -335,20 +339,50 @@ function Navbar() {
             color: #00c6ff !important;
           }
 
-          /* 🔹 Button style */
+          /* 🔹 Contact button */
           .contact-btn {
-            background: #00c6ff;
+            background: #007bff;
             color: #fff;
             font-weight: 600;
             font-size: 14px;
-            border-radius: 4px;
-            padding: 8px 20px;
+            border-radius: 30px;
+            padding: 10px 22px;
             transition: all 0.3s ease;
             border: none;
+            white-space: nowrap;
           }
           .contact-btn:hover {
-            background: #009edb;
+            background: #0056b3;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          }
+
+          /* ✅ Offcanvas nav links */
+          #mobileMenu .nav-link {
+            font-size: 16px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+          }
+          #mobileMenu .nav-link:hover {
+            color: #00c6ff !important;
+            padding-left: 6px;
+          }
+
+          /* ✅ Responsive adjustments */
+          @media (max-width: 768px) {
+            .brand-text {
+              font-size: 18px;
+            }
+            .nav-link {
+              font-size: 14px;
+              padding: 6px 10px;
+            }
+            .contact-btn {
+              font-size: 13px;
+              padding: 8px 18px;
+              border-radius: 25px;
+            }
           }
         `}
       </style>
