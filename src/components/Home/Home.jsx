@@ -1,31 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import bgImage from "../../assets/images/woman-biochemist-checking-manifestations-virus-working-computer-equipped-lab-late-night.jpg";
 
 function Home() {
-  const [showForm, setShowForm] = useState(false);
+  const [typedText, setTypedText] = useState("");
+  const textArray = ["Innovating Chemistry with Data-Driven Precision"];
+  const [textIndex, setTextIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
 
-  const handleWhatsAppSubmit = (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const phone = e.target.phone.value;
-    const date = e.target.date.value;
-    const time = e.target.time.value;
-    const service = e.target.service.value;
-    const messageText = e.target.message.value;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTypedText((prev) => textArray[textIndex].substring(0, charIndex + 1));
+      setCharIndex((prev) => prev + 1);
 
-    const message = `Hello, I want to book an appointment.%0A
-    Name: ${name}%0A
-    Email: ${email}%0A
-    Phone: ${phone}%0A
-    Date: ${date}%0A
-    Time: ${time}%0A
-    Service: ${service}%0A
-    Message: ${messageText}`;
+      if (charIndex === textArray[textIndex].length) {
+        clearInterval(interval);
+        setTimeout(() => {
+          setCharIndex(0);
+          setTextIndex((prev) => (prev + 1) % textArray.length);
+          setTypedText("");
+        }, 2000);
+      }
+    }, 100);
 
-    window.open(`https://wa.me/919876543210?text=${message}`, "_blank");
-  };
+    return () => clearInterval(interval);
+  }, [charIndex, textIndex]);
 
   return (
     <section
@@ -53,224 +52,91 @@ function Home() {
 
       {/* Content */}
       <div
-        className="container-fluid"
+        className="container"
         style={{
           position: "relative",
           zIndex: 2,
           width: "100%",
         }}
       >
-        <div
-          className="row w-100 flex-column flex-lg-row"
-          style={{ minHeight: "85vh" }}
-        >
-          {/* Left Content */}
-          <div className="col-lg-6 d-flex flex-column justify-content-center text-center text-lg-start pt-5 ps-lg-5">
-            <p
-              className="text-info fw-bold mb-3"
-              style={{ letterSpacing: "2px", fontSize: "0.9rem" }}
-            >
-              [ INNOVATIVE SCIENCE ]
-            </p>
-            <h1 className="hero-heading mb-0">Don’t Be</h1>
-            <h1 className="hero-heading">Next Target</h1>
+        <div className="row w-100" style={{ minHeight: "85vh" }}>
+          {/* ✅ All Text Left Side */}
+          <div className="col-lg-7 d-flex flex-column justify-content-center text-start">
+            {/* 🔹 Typewriter Heading */}
+            <h1 className="hero-heading mb-3">
+              {typedText}
+              <span className="cursor">|</span>
+            </h1>
 
-            {/* Buttons */}
-            <div className="mt-4 d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start">
-              <a
-                href="#services"
-                className="btn btn-primary me-sm-3 mb-2 mb-sm-0 custom-btn"
+            {/* Subtitle */}
+            <p
+              className="mt-2"
+              style={{
+                fontSize: "1.1rem",
+                maxWidth: "550px",
+              }}
+            >
+              From research to scale-up, <b>SpectraCore Analytics</b> delivers
+              insightful chemistry, actionable data, and sustainable process
+              solutions.
+            </p>
+
+            {/* ✅ Buttons */}
+            <div className="mt-4">
+              <button
+                className="btn get-started-btn me-3"
+                onClick={() =>
+                  document.getElementById("services").scrollIntoView({
+                    behavior: "smooth",
+                  })
+                }
               >
                 Get Started
-              </a>
-              <a href="#services" className="btn btn-outline-light custom-btn">
-                Explore Our Services
-              </a>
-            </div>
-          </div>
-
-          {/* Right Content */}
-          <div className="col-lg-6 d-flex flex-column justify-content-center text-center text-lg-end pb-5 pe-lg-5 mt-4 mt-lg-0">
-            <div>
-              <h1 className="hero-heading mb-0">Stay</h1>
-              <h1 className="hero-heading">
-                Protected<span className="text-info">.</span>
-              </h1>
-              <p
-                className="mt-3 mx-auto mx-lg-0"
-                style={{
-                  fontSize: "1rem",
-                  maxWidth: "340px",
-                }}
+              </button>
+              <button
+                className="btn explore-btn"
+                onClick={() =>
+                  document.getElementById("about").scrollIntoView({
+                    behavior: "smooth",
+                  })
+                }
               >
-                Leading science that shapes patient futures
-              </p>
+                Explore Our Services
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Make Appointment Button */}
+      {/* Scroll Down Indicator */}
       <div
         style={{
           position: "absolute",
-          top: "100px",
-          right: "30px",
-          zIndex: 3,
-        }}
-        className="d-none d-md-block"
-      >
-        <button
-          className="btn btn-primary fw-bold custom-btn"
-          onClick={() => setShowForm(true)}
-        >
-          Make Appointment
-        </button>
-      </div>
-
-      {/* Mobile Floating Button */}
-      <div
-        className="d-block d-md-none"
-        style={{
-          position: "fixed",
           bottom: "20px",
-          right: "20px",
-          zIndex: 1001,
+          left: "30px",
+          textAlign: "left",
+          zIndex: 2,
         }}
       >
-        <button
-          className="btn btn-primary fw-bold custom-btn"
-          onClick={() => setShowForm(true)}
-        >
-          Make Appointment
-        </button>
-      </div>
-
-      {/* Appointment Form Modal */}
-      {showForm && (
-        <div
+        <a
+          href="#services"
           style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.7)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
+            color: "#fff",
+            textDecoration: "none",
+            fontSize: "0.9rem",
           }}
         >
-          <div
-            style={{
-              background: "#fff",
-              color: "#000",
-              padding: "25px",
-              borderRadius: "12px",
-              width: "90%",
-              maxWidth: "400px",
-              maxHeight: "90vh",
-              overflowY: "auto",
-            }}
-          >
-            <h4 className="mb-3 text-center">Book Appointment</h4>
-            <form onSubmit={handleWhatsAppSubmit}>
-              <div className="mb-3">
-                <label className="form-label">Full Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="name"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Phone</label>
-                <input
-                  type="tel"
-                  className="form-control"
-                  name="phone"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Preferred Date</label>
-                <input
-                  type="date"
-                  className="form-control"
-                  name="date"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Preferred Time</label>
-                <input
-                  type="time"
-                  className="form-control"
-                  name="time"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Service Type</label>
-                <select className="form-select" name="service" required>
-                  <option value="">-- Select Service --</option>
-                  <option value="General Consultation">
-                    General Consultation
-                  </option>
-                  <option value="Lab Test">Lab Test</option>
-                  <option value="Health Checkup">Health Checkup</option>
-                  <option value="Emergency">Emergency</option>
-                </select>
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Message</label>
-                <textarea
-                  className="form-control"
-                  rows="3"
-                  name="message"
-                  placeholder="Additional details..."
-                ></textarea>
-              </div>
-              <button type="submit" className="btn btn-success w-100 mb-2">
-                Send via WhatsApp
-              </button>
-              <button
-                type="button"
-                className="btn btn-danger w-100"
-                onClick={() => setShowForm(false)}
-              >
-                Cancel
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
+          ↓ Scroll to our site
+        </a>
+      </div>
 
       {/* CSS */}
       <style>
         {`
           .hero-heading {
             font-weight: 700;
-            font-size: 2rem;
+            font-size: 2.3rem;
             line-height: 1.2;
-          }
-
-          .custom-btn {
-            padding: 10px 22px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-          }
-          .custom-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
           }
 
           @media (min-width: 768px) {
@@ -283,6 +149,48 @@ function Home() {
             .hero-heading {
               font-size: 4rem;
             }
+          }
+
+          .cursor {
+            display: inline-block;
+            animation: blink 1s infinite;
+          }
+
+          @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+          }
+
+          /* ✅ Get Started Button */
+          .get-started-btn {
+            background: #007bff;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: none;
+            transition: all 0.3s ease;
+          }
+          .get-started-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+          }
+
+          /* ✅ Explore Button */
+          .explore-btn {
+            background: transparent;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: 2px solid #fff;
+            transition: all 0.3s ease;
+          }
+          .explore-btn:hover {
+            background: #fff;
+            color: #0b1b36;
+            transform: translateY(-2px);
           }
         `}
       </style>

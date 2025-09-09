@@ -184,7 +184,7 @@
 // }
 
 // export default Services;
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FaMicroscope,
   FaUserMd,
@@ -194,51 +194,75 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import doctorImg from "../../assets/images/doctor.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Services = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      offset: 150,
+      once: true,
+    });
+  }, []);
+
   return (
     <section className="services-section py-5">
       <div className="container">
-        <h6 className="text-primary text-center fw-bold">
+        <h6 className="text-primary text-center fw-bold" data-aos="fade-up">
           Promising Best Quality Services
         </h6>
-        <h2 className="text-center fw-bold mb-5">Our Amazing Services</h2>
+        <h2 className="text-center fw-bold mb-5" data-aos="fade-up">
+          Our Amazing Services
+        </h2>
 
         {/* Main card with blue background */}
-        <div className="services-card position-relative d-flex align-items-center justify-content-between">
+        <div
+          className="services-card position-relative d-flex align-items-center justify-content-between px-5 py-4"
+          data-aos="zoom-in"
+        >
           {/* Left services */}
           <div className="service-list">
-            <div className="service-item d-flex align-items-center mb-4">
+            <div
+              className="service-item d-flex align-items-center mb-4"
+              data-aos="fade-right"
+            >
               <div className="icon-box me-3">
                 <FaMicroscope />
               </div>
               <div>
                 <h5 className="fw-bold typewriter">Accurate Test Results</h5>
-                <p>
+                <p className="typewriter delay-1">
                   Delivering precise, reliable results for confident
                   decision-making.
                 </p>
               </div>
             </div>
-            <div className="service-item d-flex align-items-center mb-4">
+            <div
+              className="service-item d-flex align-items-center mb-4"
+              data-aos="fade-right"
+            >
               <div className="icon-box me-3">
                 <FaUserMd />
               </div>
               <div>
                 <h5 className="fw-bold typewriter">Certified Lab Experts</h5>
-                <p>
+                <p className="typewriter delay-2">
                   Delivering precise, reliable results for confident
                   decision-making.
                 </p>
               </div>
             </div>
-            <div className="service-item d-flex align-items-center">
+            <div
+              className="service-item d-flex align-items-center"
+              data-aos="fade-right"
+            >
               <div className="icon-box me-3">
                 <FaCogs />
               </div>
               <div>
                 <h5 className="fw-bold typewriter">Advanced Technology</h5>
-                <p>
+                <p className="typewriter delay-3">
                   Delivering precise, reliable results for confident
                   decision-making.
                 </p>
@@ -247,16 +271,22 @@ const Services = () => {
           </div>
 
           {/* Doctor Image */}
-          <div className="doctor-wrapper position-absolute top-50 start-50 translate-middle">
+          <div
+            className="doctor-wrapper position-absolute top-50 start-50 translate-middle"
+            data-aos="zoom-in-up"
+          >
             <img src={doctorImg} alt="Doctor" className="doctor-img" />
           </div>
 
           {/* Right services */}
           <div className="service-list text-end">
-            <div className="service-item d-flex align-items-center mb-4 justify-content-end">
+            <div
+              className="service-item d-flex align-items-center mb-4 justify-content-end"
+              data-aos="fade-left"
+            >
               <div>
                 <h5 className="fw-bold typewriter">Fast Turnaround Time</h5>
-                <p>
+                <p className="typewriter delay-4">
                   Delivering precise, reliable results for confident
                   decision-making.
                 </p>
@@ -265,10 +295,13 @@ const Services = () => {
                 <FaStopwatch />
               </div>
             </div>
-            <div className="service-item d-flex align-items-center mb-4 justify-content-end">
+            <div
+              className="service-item d-flex align-items-center mb-4 justify-content-end"
+              data-aos="fade-left"
+            >
               <div>
                 <h5 className="fw-bold typewriter">Reliable Data Analysis</h5>
-                <p>
+                <p className="typewriter delay-5">
                   Delivering precise, reliable results for confident
                   decision-making.
                 </p>
@@ -277,10 +310,13 @@ const Services = () => {
                 <FaChartLine />
               </div>
             </div>
-            <div className="service-item d-flex align-items-center justify-content-end">
+            <div
+              className="service-item d-flex align-items-center justify-content-end"
+              data-aos="fade-left"
+            >
               <div>
                 <h5 className="fw-bold typewriter">Trusted By Professionals</h5>
-                <p>
+                <p className="typewriter delay-6">
                   Delivering precise, reliable results for confident
                   decision-making.
                 </p>
@@ -302,7 +338,7 @@ const Services = () => {
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             color: #fff;
             overflow: hidden;
-            padding: 45px 40px 40px 40px; /* Top = 45px */
+            padding: 75px 50px 45px 50px; /* ⬅️ Top padding increased by 10px */
           }
           .service-item h5 {
             margin: 0;
@@ -312,6 +348,7 @@ const Services = () => {
             margin: 0;
             font-size: 14px;
             color: #f0f0f0;
+            max-width: 240px;
           }
           .icon-box {
             width: 55px;
@@ -336,29 +373,36 @@ const Services = () => {
             75% { transform: translate(2px, -2px) rotate(1deg); }
             100% { transform: translate(0, 0) rotate(0deg); }
           }
-          .doctor-wrapper {
-            z-index: 10;
-          }
-          .doctor-img {
-            max-height: 420px;
-            object-fit: contain;
+
+          /* ✅ Typewriter Effect */
+          .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #fff;
+            width: 0;
+            animation: typing 2s steps(30, end) forwards, blink 0.7s infinite;
           }
 
-          /* Typewriter Animation */
-          .typewriter {
-            display: inline-block;
-            overflow: hidden;
-            border-right: 2px solid #fff;
-            white-space: nowrap;
-            animation: typing 3s steps(30, end), blink 0.8s step-end infinite;
-          }
+          /* delay for each text */
+          .delay-1 { animation-delay: 0.5s, 2.5s; }
+          .delay-2 { animation-delay: 1s, 3s; }
+          .delay-3 { animation-delay: 1.5s, 3.5s; }
+          .delay-4 { animation-delay: 2s, 4s; }
+          .delay-5 { animation-delay: 2.5s, 4.5s; }
+          .delay-6 { animation-delay: 3s, 5s; }
+
           @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+            from { width: 0; }
+            to { width: 100%; }
           }
           @keyframes blink {
-            50% { border-color: transparent }
+            0% { border-color: transparent; }
+            50% { border-color: #fff; }
+            100% { border-color: transparent; }
           }
+
+          .doctor-wrapper { z-index: 10; }
+          .doctor-img { max-height: 450px; object-fit: contain; }
         `}
       </style>
     </section>

@@ -167,7 +167,6 @@
 //     </>
 //   );
 // }
-
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -188,7 +187,6 @@ function Navbar() {
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    // ✅ Offcanvas close after click
     const closeBtn = document.querySelector("#mobileMenu .btn-close");
     if (closeBtn) closeBtn.click();
   };
@@ -243,9 +241,10 @@ function Navbar() {
           <div className="d-none d-md-flex ms-3">
             <button
               className="btn contact-btn"
-              onClick={(e) => handleNavClick(e, "contact")}
+              data-bs-toggle="modal"
+              data-bs-target="#appointmentModal"
             >
-              Get in Touch
+              Make Appointment
             </button>
           </div>
         </div>
@@ -283,13 +282,101 @@ function Navbar() {
               </li>
             ))}
           </ul>
-          {/* ✅ Button inside mobile menu */}
+          {/* ✅ Mobile Button */}
           <button
             className="btn contact-btn w-100"
-            onClick={(e) => handleNavClick(e, "contact")}
+            data-bs-toggle="modal"
+            data-bs-target="#appointmentModal"
           >
-            Get in Touch
+            Make Appointment
           </button>
+        </div>
+      </div>
+
+      {/* ✅ Appointment Modal */}
+      <div
+        className="modal fade"
+        id="appointmentModal"
+        tabIndex="-1"
+        aria-labelledby="appointmentModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-lg modal-dialog-centered">
+          <div className="modal-content p-3 rounded-3">
+            <div className="modal-header border-0">
+              <h5
+                className="modal-title fw-bold text-primary"
+                id="appointmentModalLabel"
+              >
+                Book an Appointment
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <form className="row g-3">
+                <div className="col-md-6">
+                  <label className="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter your name"
+                  />
+                </div>
+                <div className="col-md-6">
+                  <label className="form-label">Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter your email"
+                  />
+                </div>
+                <div className="col-md-6">
+                  <label className="form-label">Phone</label>
+                  <input
+                    type="tel"
+                    className="form-control"
+                    placeholder="Enter phone number"
+                  />
+                </div>
+                <div className="col-md-6">
+                  <label className="form-label">Service</label>
+                  <select className="form-select">
+                    <option>Select Service</option>
+                    <option>Consultation</option>
+                    <option>Data Analysis</option>
+                    <option>Strategy Session</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div className="col-md-6">
+                  <label className="form-label">Preferred Date</label>
+                  <input type="date" className="form-control" />
+                </div>
+                <div className="col-md-6">
+                  <label className="form-label">Preferred Time</label>
+                  <input type="time" className="form-control" />
+                </div>
+                <div className="col-12">
+                  <label className="form-label">Message</label>
+                  <textarea
+                    className="form-control"
+                    rows="3"
+                    placeholder="Any additional details"
+                  ></textarea>
+                </div>
+                <div className="col-12 text-end">
+                  <button type="submit" className="btn contact-btn">
+                    Submit Appointment
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -310,13 +397,11 @@ function Navbar() {
             transition: background 0.6s ease, color 0.6s ease;
           }
 
-          /* 🔹 Navbar padding */
           .navbar {
             padding-top: 12px;
             padding-bottom: 14px;
           }
 
-          /* 🔹 Brand text */
           .brand-text {
             font-size: 20px;
             font-weight: 700;
@@ -327,7 +412,6 @@ function Navbar() {
             color: #00c6ff;
           }
 
-          /* 🔹 Nav links */
           .nav-link {
             font-size: 15px;
             font-weight: 500;
@@ -339,7 +423,6 @@ function Navbar() {
             color: #00c6ff !important;
           }
 
-          /* 🔹 Contact button */
           .contact-btn {
             background: #007bff;
             color: #fff;
@@ -355,34 +438,6 @@ function Navbar() {
             background: #0056b3;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-          }
-
-          /* ✅ Offcanvas nav links */
-          #mobileMenu .nav-link {
-            font-size: 16px;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-          }
-          #mobileMenu .nav-link:hover {
-            color: #00c6ff !important;
-            padding-left: 6px;
-          }
-
-          /* ✅ Responsive adjustments */
-          @media (max-width: 768px) {
-            .brand-text {
-              font-size: 18px;
-            }
-            .nav-link {
-              font-size: 14px;
-              padding: 6px 10px;
-            }
-            .contact-btn {
-              font-size: 13px;
-              padding: 8px 18px;
-              border-radius: 25px;
-            }
           }
         `}
       </style>
