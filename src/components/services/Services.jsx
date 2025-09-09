@@ -216,7 +216,7 @@ const Services = () => {
           Our Amazing Services
         </h2>
 
-        {/* Main card with blue background */}
+        {/* Main card */}
         <div
           className="services-card position-relative d-flex align-items-center justify-content-between px-5 py-4"
           data-aos="zoom-in"
@@ -231,8 +231,8 @@ const Services = () => {
                 <FaMicroscope />
               </div>
               <div>
-                <h5 className="fw-bold typewriter">Accurate Test Results</h5>
-                <p className="typewriter delay-1">
+                <h5 className="fw-bold">Accurate Test Results</h5>
+                <p>
                   Delivering precise, reliable results for confident
                   decision-making.
                 </p>
@@ -246,11 +246,8 @@ const Services = () => {
                 <FaUserMd />
               </div>
               <div>
-                <h5 className="fw-bold typewriter">Certified Lab Experts</h5>
-                <p className="typewriter delay-2">
-                  Delivering precise, reliable results for confident
-                  decision-making.
-                </p>
+                <h5 className="fw-bold">Certified Lab Experts</h5>
+                <p>Trusted specialists with proven expertise.</p>
               </div>
             </div>
             <div
@@ -261,16 +258,13 @@ const Services = () => {
                 <FaCogs />
               </div>
               <div>
-                <h5 className="fw-bold typewriter">Advanced Technology</h5>
-                <p className="typewriter delay-3">
-                  Delivering precise, reliable results for confident
-                  decision-making.
-                </p>
+                <h5 className="fw-bold">Advanced Technology</h5>
+                <p>Cutting-edge equipment for accuracy and speed.</p>
               </div>
             </div>
           </div>
 
-          {/* Doctor Image */}
+          {/* Doctor Image (hide on mobile) */}
           <div
             className="doctor-wrapper position-absolute top-50 start-50 translate-middle"
             data-aos="zoom-in-up"
@@ -285,11 +279,8 @@ const Services = () => {
               data-aos="fade-left"
             >
               <div>
-                <h5 className="fw-bold typewriter">Fast Turnaround Time</h5>
-                <p className="typewriter delay-4">
-                  Delivering precise, reliable results for confident
-                  decision-making.
-                </p>
+                <h5 className="fw-bold">Fast Turnaround Time</h5>
+                <p>Quick and reliable processing every time.</p>
               </div>
               <div className="icon-box ms-3">
                 <FaStopwatch />
@@ -300,11 +291,8 @@ const Services = () => {
               data-aos="fade-left"
             >
               <div>
-                <h5 className="fw-bold typewriter">Reliable Data Analysis</h5>
-                <p className="typewriter delay-5">
-                  Delivering precise, reliable results for confident
-                  decision-making.
-                </p>
+                <h5 className="fw-bold">Reliable Data Analysis</h5>
+                <p>Accurate insights for better decisions.</p>
               </div>
               <div className="icon-box ms-3">
                 <FaChartLine />
@@ -315,11 +303,8 @@ const Services = () => {
               data-aos="fade-left"
             >
               <div>
-                <h5 className="fw-bold typewriter">Trusted By Professionals</h5>
-                <p className="typewriter delay-6">
-                  Delivering precise, reliable results for confident
-                  decision-making.
-                </p>
+                <h5 className="fw-bold">Trusted By Professionals</h5>
+                <p>Preferred by top healthcare providers.</p>
               </div>
               <div className="icon-box ms-3">
                 <FaCheckCircle />
@@ -338,7 +323,7 @@ const Services = () => {
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             color: #fff;
             overflow: hidden;
-            padding: 75px 50px 45px 50px; /* ⬅️ Top padding increased by 10px */
+            padding: 75px 50px 45px 50px; 
           }
           .service-item h5 {
             margin: 0;
@@ -363,46 +348,44 @@ const Services = () => {
             transition: transform 0.3s ease;
           }
           .icon-box:hover {
-            animation: shake 0.4s;
-            background: rgba(255,255,255,0.3);
-          }
-          @keyframes shake {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(2px, 2px) rotate(2deg); }
-            50% { transform: translate(-2px, -1px) rotate(-2deg); }
-            75% { transform: translate(2px, -2px) rotate(1deg); }
-            100% { transform: translate(0, 0) rotate(0deg); }
-          }
-
-          /* ✅ Typewriter Effect */
-          .typewriter {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid #fff;
-            width: 0;
-            animation: typing 2s steps(30, end) forwards, blink 0.7s infinite;
-          }
-
-          /* delay for each text */
-          .delay-1 { animation-delay: 0.5s, 2.5s; }
-          .delay-2 { animation-delay: 1s, 3s; }
-          .delay-3 { animation-delay: 1.5s, 3.5s; }
-          .delay-4 { animation-delay: 2s, 4s; }
-          .delay-5 { animation-delay: 2.5s, 4.5s; }
-          .delay-6 { animation-delay: 3s, 5s; }
-
-          @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-          }
-          @keyframes blink {
-            0% { border-color: transparent; }
-            50% { border-color: #fff; }
-            100% { border-color: transparent; }
+            transform: scale(1.1);
           }
 
           .doctor-wrapper { z-index: 10; }
           .doctor-img { max-height: 450px; object-fit: contain; }
+
+          /* ✅ Responsive Fix */
+          @media (max-width: 991px) {
+            .services-card {
+              flex-direction: column !important;
+              text-align: center;
+              padding: 40px 20px;
+            }
+            .service-list {
+              width: 100%;
+              text-align: center !important;
+            }
+          }
+
+          /* ✅ Hide Doctor Image and stack icons/text on Mobile */
+          @media (max-width: 768px) {
+            .doctor-wrapper {
+              display: none !important;
+            }
+            .service-item {
+              flex-direction: column !important;
+              justify-content: center !important;
+              align-items: center !important;
+              text-align: center !important;
+              margin-bottom: 25px;
+            }
+            .service-item .icon-box {
+              margin-bottom: 12px;
+            }
+            .service-item p {
+              max-width: 100% !important;
+            }
+          }
         `}
       </style>
     </section>
