@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+// ⚠️ Make sure file name ka case bilkul match kare
 import bgImage from "../../assets/images/woman-biochemist-checking-manifestations-virus-working-computer-equipped-lab-late-night.jpg";
 
 function Home() {
@@ -8,22 +9,22 @@ function Home() {
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
 
+  // ✅ Fixed Typewriter Effect
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTypedText((prev) => textArray[textIndex].substring(0, charIndex + 1));
-      setCharIndex((prev) => prev + 1);
-
-      if (charIndex === textArray[textIndex].length) {
-        clearInterval(interval);
-        setTimeout(() => {
-          setCharIndex(0);
-          setTextIndex((prev) => (prev + 1) % textArray.length);
-          setTypedText("");
-        }, 2000);
-      }
-    }, 100);
-
-    return () => clearInterval(interval);
+    if (charIndex < textArray[textIndex].length) {
+      const timeout = setTimeout(() => {
+        setTypedText(textArray[textIndex].substring(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
+      }, 100);
+      return () => clearTimeout(timeout);
+    } else {
+      const timeout = setTimeout(() => {
+        setCharIndex(0);
+        setTextIndex((prev) => (prev + 1) % textArray.length);
+        setTypedText("");
+      }, 2000);
+      return () => clearTimeout(timeout);
+    }
   }, [charIndex, textIndex]);
 
   return (
@@ -60,9 +61,9 @@ function Home() {
         }}
       >
         <div className="row w-100" style={{ minHeight: "85vh" }}>
-          {/* ✅ All Text Left Side */}
+          {/* Text Left Side */}
           <div className="col-lg-7 d-flex flex-column justify-content-center text-start">
-            {/* 🔹 Typewriter Heading */}
+            {/* Typewriter Heading */}
             <h1 className="hero-heading mb-3">
               {typedText}
               <span className="cursor">|</span>
@@ -81,7 +82,7 @@ function Home() {
               solutions.
             </p>
 
-            {/* ✅ Buttons */}
+            {/* Buttons */}
             <div className="mt-4">
               <button
                 className="btn get-started-btn me-3"
@@ -162,7 +163,6 @@ function Home() {
             100% { opacity: 1; }
           }
 
-          /* ✅ Get Started Button */
           .get-started-btn {
             background: #007bff;
             color: #fff;
@@ -177,7 +177,6 @@ function Home() {
             transform: translateY(-2px);
           }
 
-          /* ✅ Explore Button */
           .explore-btn {
             background: transparent;
             color: #fff;
