@@ -36,10 +36,10 @@ function Contact() {
       style={{ backgroundColor: "#f8f9fa" }}
     >
       <div className="container">
-        <div className="row">
-          {/* Left Info */}
+        <div className="row align-items-center">
+          {/* ✅ Left Info */}
           <div className="col-lg-5 mb-4" data-aos="fade-right">
-            <h2 className="fw-bold mb-3" style={{ color: "#50C878" }}>
+            <h2 className="fw-bold mb-3" style={{ color: "#2AD2C1" }}>
               Get in Touch
             </h2>
             <p className="text-muted mb-4">
@@ -47,31 +47,42 @@ function Contact() {
               suggestions, or feedback.
             </p>
             <div className="mb-3">
-              <h6 className="fw-semibold">📍 Address</h6>
+              <h6 className="fw-semibold" style={{ color: "#2AD2C1" }}>
+                📍 Address
+              </h6>
               <p className="text-muted">123 SpectraCore St, New Delhi, India</p>
             </div>
             <div className="mb-3">
-              <h6 className="fw-semibold">📧 Email</h6>
+              <h6 className="fw-semibold" style={{ color: "#2AD2C1" }}>
+                📧 Email
+              </h6>
               <p className="text-muted">neeraj2005jeena@gmail.com</p>
             </div>
             <div className="mb-3">
-              <h6 className="fw-semibold">📞 Phone</h6>
+              <h6 className="fw-semibold" style={{ color: "#2AD2C1" }}>
+                📞 Phone
+              </h6>
               <p className="text-muted">+91 98765 43210</p>
             </div>
           </div>
 
-          {/* Right Form */}
+          {/* ✅ Right Form */}
           <div className="col-lg-7" data-aos="fade-left">
             <div
               className="p-4 bg-white rounded shadow-lg"
-              style={{ borderTop: "4px solid #50C878" }}
+              style={{ borderTop: "4px solid #2AD2C1" }}
             >
-              <h4 className="fw-bold mb-4" style={{ color: "#50C878" }}>
+              <h4 className="fw-bold mb-4" style={{ color: "#2AD2C1" }}>
                 Send us a Message
               </h4>
               <form ref={form} onSubmit={sendEmail}>
                 <div className="mb-3">
-                  <label className="form-label fw-semibold">Your Name</label>
+                  <label
+                    className="form-label fw-semibold"
+                    style={{ color: "#2AD2C1" }}
+                  >
+                    Your Name
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -81,7 +92,12 @@ function Contact() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label className="form-label fw-semibold">Your Email</label>
+                  <label
+                    className="form-label fw-semibold"
+                    style={{ color: "#2AD2C1" }}
+                  >
+                    Your Email
+                  </label>
                   <input
                     type="email"
                     className="form-control"
@@ -91,7 +107,10 @@ function Contact() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label className="form-label fw-semibold">
+                  <label
+                    className="form-label fw-semibold"
+                    style={{ color: "#2AD2C1" }}
+                  >
                     Your Feedback
                   </label>
                   <textarea
@@ -106,9 +125,12 @@ function Contact() {
                   type="submit"
                   className="btn w-100"
                   style={{
-                    background: "linear-gradient(45deg, #50C878, #3dbf70)",
+                    background: "linear-gradient(45deg, #24B7D3, #30EFAD)",
                     color: "#fff",
                     fontWeight: "600",
+                    borderRadius: "10px",
+                    padding: "12px",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
                   }}
                 >
                   Send Feedback
@@ -118,6 +140,31 @@ function Contact() {
           </div>
         </div>
       </div>
+
+      {/* ✅ Extra CSS for responsiveness */}
+      <style>{`
+        #contact h2 {
+          font-size: clamp(24px, 3vw, 32px);
+        }
+        #contact p {
+          font-size: clamp(14px, 2vw, 16px);
+        }
+        #contact .form-control {
+          font-size: 14px;
+          padding: 12px;
+          border-radius: 10px;
+          border: 1px solid #2AD2C1;
+        }
+        #contact button:hover {
+          transform: scale(1.03);
+          background: linear-gradient(45deg, #30EFAD, #24B7D3);
+        }
+        #contact .form-label:after {
+          content: "*";
+          color: #00FB8A; /* Accent bright green */
+          margin-left: 4px;
+        }
+      `}</style>
     </section>
   );
 }

@@ -201,11 +201,11 @@ function Navbar() {
         <div className="container-fluid d-flex align-items-center justify-content-between px-3 px-md-4">
           {/* ✅ Brand Name */}
           <a className="navbar-brand fw-bold brand-text" href="#">
-            <span className="brand-green">Spectracore</span>{" "}
+            <span className="brand-teal">Spectracore</span>{" "}
             <span className="brand-white">Analytics</span>
           </a>
 
-          {/* ✅ Mobile toggle (3 lines white) */}
+          {/* ✅ Mobile toggle */}
           <button
             className="navbar-toggler custom-toggler"
             type="button"
@@ -259,7 +259,7 @@ function Navbar() {
         aria-labelledby="mobileMenuLabel"
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title text-info">Spectracore Menu</h5>
+          <h5 className="offcanvas-title text-accent">Spectracore Menu</h5>
           <button
             type="button"
             className="btn-close btn-close-white"
@@ -306,7 +306,7 @@ function Navbar() {
           <div className="modal-content p-3 rounded-3">
             <div className="modal-header border-0">
               <h5
-                className="modal-title fw-bold modal-title-green"
+                className="modal-title fw-bold modal-title-teal"
                 id="appointmentModalLabel"
               >
                 Book an Appointment
@@ -404,8 +404,8 @@ function Navbar() {
           }
 
           /* ✅ Brand Colors */
-          .brand-green {
-            color: #50C878; /* Emerald Green */
+          .brand-teal {
+            color: #2AD2C1; /* Teal */
           }
           .brand-white {
             color: #fff;
@@ -419,12 +419,12 @@ function Navbar() {
             transition: color 0.3s ease;
           }
           .nav-link:hover {
-            color: #50C878 !important;
+            color: #00FB8A !important; /* Bright green accent */
           }
 
-          /* ✅ Emerald Green Button */
+          /* ✅ Gradient Button */
           .contact-btn {
-            background: #50C878;
+            background: linear-gradient(45deg, #24B7D3, #30EFAD);
             color: #fff;
             font-weight: 600;
             font-size: 14px;
@@ -435,17 +435,17 @@ function Navbar() {
             white-space: nowrap;
           }
           .contact-btn:hover {
-            background: #3da866; /* Darker Emerald */
+            background: #00FB8A; /* Accent */
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
           }
 
-          /* ✅ Modal Title Green */
-          .modal-title-green {
-            color: #50C878 !important;
+          /* ✅ Modal Title */
+          .modal-title-teal {
+            color: #2AD2C1 !important;
           }
 
-          /* ✅ Custom White Toggler (3 lines) */
+          /* ✅ Custom White Toggler */
           .custom-toggler {
             border: none;
           }
@@ -454,6 +454,11 @@ function Navbar() {
             xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' 
             stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' 
             d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+          }
+
+          /* ✅ Accent text for offcanvas */
+          .text-accent {
+            color: #00FB8A !important;
           }
         `}
       </style>

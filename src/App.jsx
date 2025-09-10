@@ -187,10 +187,9 @@ function App() {
   useEffect(() => {
     AOS.init({
       duration: 1000,
-      once: true, // 👈 same animation ek baar chalega (mirror: false rakha)
+      once: true,
     });
 
-    // ✅ Show/hide scroll button
     const handleScroll = () => {
       setShowScroll(window.scrollY > 300);
     };
@@ -199,7 +198,6 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ✅ Smooth scroll to top
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -226,10 +224,10 @@ function App() {
         <section id="contact" className="normal-section" data-aos="fade-up">
           <Contact />
         </section>
-        <section id="contact" className="normal-section" data-aos="fade-up">
+        <section id="faq" className="normal-section" data-aos="fade-up">
           <Faq />
         </section>
-        <section id="contact" className="normal-section" data-aos="fade-up">
+        <section id="location" className="normal-section" data-aos="fade-up">
           <Location />
         </section>
       </main>
@@ -244,6 +242,27 @@ function App() {
           <FaArrowUp />
         </div>
       )}
+
+      {/* ✅ Custom Styles */}
+      <style>{`
+        .scroll-to-top {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: #2AD2C1; /* Primary */
+          color: #fff;
+          border-radius: 50%;
+          padding: 12px;
+          cursor: pointer;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+          transition: transform 0.3s ease, background 0.3s ease;
+          z-index: 999;
+        }
+        .scroll-to-top:hover {
+          background: linear-gradient(135deg, #24B7D3, #30EFAD); /* Gradient */
+          transform: scale(1.1);
+        }
+      `}</style>
     </>
   );
 }

@@ -210,7 +210,7 @@ function Home() {
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
 
-  // ✅ Fixed Typewriter Effect
+  // ✅ Typewriter Effect
   useEffect(() => {
     if (charIndex < textArray[textIndex].length) {
       const timeout = setTimeout(() => {
@@ -252,7 +252,7 @@ function Home() {
         }}
       ></div>
 
-      {/* ✅ Content always above overlay */}
+      {/* ✅ Content */}
       <div
         className="container"
         style={{
@@ -277,7 +277,8 @@ function Home() {
                 maxWidth: "550px",
               }}
             >
-              From research to scale-up, <b>SpectraCore Analytics</b> delivers
+              From research to scale-up,{" "}
+              <b style={{ color: "#2AD2C1" }}>SpectraCore Analytics</b> delivers
               insightful chemistry, actionable data, and sustainable process
               solutions.
             </p>
@@ -322,7 +323,7 @@ function Home() {
         <a
           href="#services"
           style={{
-            color: "#fff",
+            color: "#00FB8A", // ✅ Accent Green
             textDecoration: "none",
             fontSize: "0.9rem",
           }}
@@ -363,9 +364,9 @@ function Home() {
             100% { opacity: 1; }
           }
 
-          /* ✅ Updated Get Started Button (Emerald Green) */
+          /* ✅ Get Started Button (Gradient) */
           .get-started-btn {
-            background: #50C878; /* Emerald Green */
+            background: linear-gradient(45deg, #24B7D3, #30EFAD);
             color: #fff;
             font-weight: 600;
             padding: 10px 24px;
@@ -374,22 +375,23 @@ function Home() {
             transition: all 0.3s ease;
           }
           .get-started-btn:hover {
-            background: #3da866; /* Darker Emerald */
+            background: #00FB8A; /* Accent Green */
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
           }
 
+          /* ✅ Explore Button (Teal Outline) */
           .explore-btn {
             background: transparent;
-            color: #fff;
+            color: #2AD2C1; /* Teal */
             font-weight: 600;
             padding: 10px 24px;
             border-radius: 50px;
-            border: 2px solid #fff;
+            border: 2px solid #2AD2C1;
             transition: all 0.3s ease;
           }
           .explore-btn:hover {
-            background: #fff;
+            background: #2AD2C1;
             color: #0b1b36;
             transform: translateY(-2px);
           }

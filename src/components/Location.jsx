@@ -19,13 +19,13 @@ function Location() {
     <section
       id="location"
       className="py-5"
-      style={{ backgroundColor: "#f8f9fa" }}
+      style={{ backgroundColor: "#f2f4f8" }}
     >
       <div className="container">
         <div className="row align-items-center">
           {/* Left Side - Details */}
           <div className="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-            <h2 className="fw-bold mb-3" style={{ color: "#50C878" }}>
+            <h2 className="fw-bold mb-3" style={{ color: "#2AD2C1" }}>
               Our Location
             </h2>
             <p className="lead text-muted mb-4">
@@ -40,15 +40,17 @@ function Location() {
               ☎️ <strong>Phone:</strong> +91 98765 43210
             </p>
 
-            {/* ✅ Button (Emerald Green Gradient) */}
+            {/* ✅ Button (Teal → Green Gradient) */}
             <button
               onClick={handleGetDirections}
               className="btn px-4 py-2"
               style={{
-                background: "linear-gradient(45deg, #50C878, #3dbf70)",
+                background: "linear-gradient(90deg, #24B7D3, #30EFAD)",
                 color: "#fff",
                 fontWeight: "600",
                 borderRadius: "8px",
+                border: "none",
+                boxShadow: "0 4px 12px rgba(36,183,211,0.3)",
               }}
             >
               Get Directions
