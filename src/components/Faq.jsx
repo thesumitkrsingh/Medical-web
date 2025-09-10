@@ -110,7 +110,7 @@ function Faq() {
                       cursor: "pointer",
                       boxShadow:
                         openIndex === i
-                          ? "0 10px 20px rgba(0,114,255,0.06)"
+                          ? "0 10px 20px rgba(80,200,120,0.2)"
                           : "none",
                       transition: "all 220ms ease",
                     }}
@@ -125,7 +125,7 @@ function Faq() {
                       }}
                     >
                       <div style={{ fontWeight: 600 }}>{f.q}</div>
-                      <div style={{ color: "#1ea44a", fontWeight: 800 }}>
+                      <div style={{ color: "#50C878", fontWeight: 800 }}>
                         {openIndex === i ? "−" : "+"}
                       </div>
                     </div>
@@ -216,12 +216,12 @@ function Faq() {
                   </div>
                 )}
 
-                {/* ✅ Blue Gradient Button */}
+                {/* ✅ Green Gradient Button */}
                 <button
                   type="submit"
                   className="btn w-100"
                   style={{
-                    background: "linear-gradient(90deg,#0072ff,#0056d6)",
+                    background: "linear-gradient(90deg,#50C878,#3dbf70)",
                     border: "none",
                     color: "#fff",
                     fontWeight: "600",

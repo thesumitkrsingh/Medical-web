@@ -7,19 +7,16 @@ function Contact() {
   const form = useRef();
 
   useEffect(() => {
-    AOS.init({ duration: 1000, once: false }); // once:false => har scroll pe animation chalega
+    AOS.init({ duration: 1000, once: false });
   }, []);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs
-      .sendForm(
-        "service_i333sph", // ⚡ tumhara Service ID
-        "template_pb4hbyk", // ⚡ tumhara Template ID
-        form.current,
-        { publicKey: "FXZ9pkNkJxj6TGcv7" } // ⚡ tumhara Public Key
-      )
+      .sendForm("service_i333sph", "template_pb4hbyk", form.current, {
+        publicKey: "FXZ9pkNkJxj6TGcv7",
+      })
       .then(
         () => {
           alert("✅ Thank you for your feedback!");
@@ -42,7 +39,7 @@ function Contact() {
         <div className="row">
           {/* Left Info */}
           <div className="col-lg-5 mb-4" data-aos="fade-right">
-            <h2 className="fw-bold mb-3" style={{ color: "#0072ff" }}>
+            <h2 className="fw-bold mb-3" style={{ color: "#50C878" }}>
               Get in Touch
             </h2>
             <p className="text-muted mb-4">
@@ -67,9 +64,9 @@ function Contact() {
           <div className="col-lg-7" data-aos="fade-left">
             <div
               className="p-4 bg-white rounded shadow-lg"
-              style={{ borderTop: "4px solid #0072ff" }}
+              style={{ borderTop: "4px solid #50C878" }}
             >
-              <h4 className="fw-bold mb-4" style={{ color: "#0072ff" }}>
+              <h4 className="fw-bold mb-4" style={{ color: "#50C878" }}>
                 Send us a Message
               </h4>
               <form ref={form} onSubmit={sendEmail}>
@@ -109,7 +106,7 @@ function Contact() {
                   type="submit"
                   className="btn w-100"
                   style={{
-                    background: "linear-gradient(45deg, #00c6ff, #0072ff)",
+                    background: "linear-gradient(45deg, #50C878, #3dbf70)",
                     color: "#fff",
                     fontWeight: "600",
                   }}

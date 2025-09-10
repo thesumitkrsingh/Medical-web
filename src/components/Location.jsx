@@ -25,7 +25,7 @@ function Location() {
         <div className="row align-items-center">
           {/* Left Side - Details */}
           <div className="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-            <h2 className="fw-bold mb-3" style={{ color: "#0072ff" }}>
+            <h2 className="fw-bold mb-3" style={{ color: "#50C878" }}>
               Our Location
             </h2>
             <p className="lead text-muted mb-4">
@@ -40,12 +40,12 @@ function Location() {
               ☎️ <strong>Phone:</strong> +91 98765 43210
             </p>
 
-            {/* ✅ Button */}
+            {/* ✅ Button (Emerald Green Gradient) */}
             <button
               onClick={handleGetDirections}
               className="btn px-4 py-2"
               style={{
-                background: "linear-gradient(45deg, #00c6ff, #0072ff)",
+                background: "linear-gradient(45deg, #50C878, #3dbf70)",
                 color: "#fff",
                 fontWeight: "600",
                 borderRadius: "8px",

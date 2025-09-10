@@ -17,8 +17,8 @@ function About() {
   const hexStyleOuter = (rotate = 0) => ({
     clipPath:
       "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)",
-    width: "clamp(140px, 20vw, 200px)", // 🔥 responsive
-    height: "clamp(160px, 24vw, 220px)", // 🔥 responsive
+    width: "clamp(140px, 20vw, 200px)",
+    height: "clamp(160px, 24vw, 220px)",
     backgroundColor: "#f8f9fa",
     display: "flex",
     alignItems: "center",
@@ -34,11 +34,11 @@ function About() {
   const hexStyleInner = (src, rotate = 0, isGirl = false) => ({
     clipPath:
       "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)",
-    width: "85%", // 🔥 auto responsive inside outer
+    width: "85%",
     height: "85%",
     backgroundImage: `url(${src})`,
     backgroundSize: "cover",
-    backgroundPosition: isGirl ? "top center" : "center", // 🔥 girl ka face clear
+    backgroundPosition: isGirl ? "top center" : "center",
     transition: "all 0.4s ease",
     transform: `rotate(-${rotate}deg)`,
   });
@@ -47,7 +47,7 @@ function About() {
     <section className="py-5" style={{ backgroundColor: "#fff" }}>
       <div className="container">
         <div className="row align-items-center">
-          {/* ✅ Left Side (Hexagon Images with Different Orientation) */}
+          {/* ✅ Left Side (Hexagon Images) */}
           <div className="col-lg-6 mb-4 mb-lg-0 d-flex flex-wrap justify-content-center gap-4">
             {/* Top Left Hexagon */}
             <div
@@ -57,7 +57,7 @@ function About() {
                 e.currentTarget.style.transform =
                   "translateY(-12px) scale(1.05)";
                 e.currentTarget.style.boxShadow =
-                  "0 18px 35px rgba(0,0,0,0.3), 0 8px 20px rgba(0,114,255,0.3)";
+                  "0 18px 35px rgba(0,0,0,0.3), 0 8px 20px rgba(80,200,120,0.4)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "rotate(0deg)";
@@ -75,7 +75,7 @@ function About() {
                 e.currentTarget.style.transform =
                   "translateY(-12px) scale(1.05)";
                 e.currentTarget.style.boxShadow =
-                  "0 18px 35px rgba(0,0,0,0.3), 0 8px 20px rgba(0,114,255,0.3)";
+                  "0 18px 35px rgba(0,0,0,0.3), 0 8px 20px rgba(80,200,120,0.4)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "rotate(0deg)";
@@ -93,7 +93,7 @@ function About() {
                 e.currentTarget.style.transform =
                   "rotate(90deg) translateY(-12px) scale(1.05)";
                 e.currentTarget.style.boxShadow =
-                  "0 18px 35px rgba(0,0,0,0.3), 0 8px 20px rgba(0,114,255,0.3)";
+                  "0 18px 35px rgba(0,0,0,0.3), 0 8px 20px rgba(80,200,120,0.4)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "rotate(90deg)";
@@ -106,12 +106,12 @@ function About() {
 
           {/* ✅ Right Side (Content) */}
           <div className="col-lg-6" data-aos="fade-left">
-            <h6 className="fw-bold text-uppercase" style={{ color: "#0072ff" }}>
+            <h6 className="fw-bold text-uppercase" style={{ color: "#50C878" }}>
               About Us
             </h6>
             <h2 className="fw-bold mb-3">
               Experiment With The Best{" "}
-              <span style={{ color: "#0072ff" }}>Lab Test And Service</span>
+              <span style={{ color: "#50C878" }}>Lab Test And Service</span>
             </h2>
             <p className="text-muted">
               With a belief that knowledge is power, we connect our patients
@@ -133,7 +133,7 @@ function About() {
                 >
                   <span
                     style={{
-                      color: "#0072ff",
+                      color: "#50C878",
                       fontSize: "20px",
                       marginRight: "8px",
                     }}

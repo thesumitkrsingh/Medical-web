@@ -257,7 +257,7 @@ function Home() {
         className="container"
         style={{
           position: "relative",
-          zIndex: 5, // 👈 Increased to always be visible
+          zIndex: 5,
           width: "100%",
         }}
       >
@@ -316,7 +316,7 @@ function Home() {
           bottom: "20px",
           left: "30px",
           textAlign: "left",
-          zIndex: 5, // 👈 Bhi overlay ke upar
+          zIndex: 5,
         }}
       >
         <a
@@ -363,8 +363,9 @@ function Home() {
             100% { opacity: 1; }
           }
 
+          /* ✅ Updated Get Started Button (Emerald Green) */
           .get-started-btn {
-            background: #007bff;
+            background: #50C878; /* Emerald Green */
             color: #fff;
             font-weight: 600;
             padding: 10px 24px;
@@ -373,8 +374,9 @@ function Home() {
             transition: all 0.3s ease;
           }
           .get-started-btn:hover {
-            background: #0056b3;
+            background: #3da866; /* Darker Emerald */
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
           }
 
           .explore-btn {

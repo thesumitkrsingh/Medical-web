@@ -201,7 +201,8 @@ function Navbar() {
         <div className="container-fluid d-flex align-items-center justify-content-between px-3 px-md-4">
           {/* ✅ Brand Name */}
           <a className="navbar-brand fw-bold brand-text" href="#">
-            Spectracore <span>Analytics</span>
+            <span className="brand-green">Spectracore</span>{" "}
+            <span className="brand-white">Analytics</span>
           </a>
 
           {/* ✅ Mobile toggle (3 lines white) */}
@@ -305,7 +306,7 @@ function Navbar() {
           <div className="modal-content p-3 rounded-3">
             <div className="modal-header border-0">
               <h5
-                className="modal-title fw-bold text-primary"
+                className="modal-title fw-bold modal-title-green"
                 id="appointmentModalLabel"
               >
                 Book an Appointment
@@ -402,14 +403,12 @@ function Navbar() {
             padding-bottom: 14px;
           }
 
-          .brand-text {
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff !important;
-            letter-spacing: 1px;
+          /* ✅ Brand Colors */
+          .brand-green {
+            color: #50C878; /* Emerald Green */
           }
-          .brand-text span {
-            color: #00c6ff;
+          .brand-white {
+            color: #fff;
           }
 
           .nav-link {
@@ -420,11 +419,12 @@ function Navbar() {
             transition: color 0.3s ease;
           }
           .nav-link:hover {
-            color: #00c6ff !important;
+            color: #50C878 !important;
           }
 
+          /* ✅ Emerald Green Button */
           .contact-btn {
-            background: #007bff;
+            background: #50C878;
             color: #fff;
             font-weight: 600;
             font-size: 14px;
@@ -435,9 +435,14 @@ function Navbar() {
             white-space: nowrap;
           }
           .contact-btn:hover {
-            background: #0056b3;
+            background: #3da866; /* Darker Emerald */
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          }
+
+          /* ✅ Modal Title Green */
+          .modal-title-green {
+            color: #50C878 !important;
           }
 
           /* ✅ Custom White Toggler (3 lines) */
