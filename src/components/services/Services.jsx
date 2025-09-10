@@ -32,7 +32,7 @@ const Services = () => {
           Promising Best Quality Services
         </h6>
         <h2 className="text-center fw-bold mb-5" data-aos="fade-up">
-          Our Amazing <span style={{ color: "#2AD2C1" }}>Services</span>
+          Our Amazing <span style={{ color: "#00FB8A" }}>Services</span>
         </h2>
 
         {/* ✅ Main Card */}
@@ -167,14 +167,12 @@ const Services = () => {
             transition: transform 0.3s ease;
           }
 
-          /* Right side icons */
           .right-services .icon-box {
             background: rgba(255,255,255,0.15);
             color: #fff;
             border: 2px solid #00FB8A; /* Accent border */
           }
 
-          /* Left side icons */
           .left-services .icon-box {
             background: rgba(0,0,0,0.08);
             color: #2AD2C1; /* Primary teal */
@@ -187,14 +185,29 @@ const Services = () => {
           .doctor-wrapper { z-index: 10; }
           .doctor-img { max-height: 450px; object-fit: contain; }
 
-          /* ✅ Responsive Fix */
+          /* ✅ Mobile/Tablet fix */
           @media (max-width: 991px) {
             .services-card {
               flex-direction: column !important;
               text-align: center;
               padding: 40px 20px;
-              background: #fff; /* Mobile view: single background */
+              background: linear-gradient(135deg, #24B7D3, #30EFAD); /* ✅ Full gradient */
             }
+
+            .left-services h5, 
+            .left-services p,
+            .right-services h5, 
+            .right-services p {
+              color: #fff !important; /* ✅ White text */
+            }
+
+            .left-services .icon-box,
+            .right-services .icon-box {
+              background: rgba(255,255,255,0.15);
+              color: #fff;
+              border: 2px solid #00FB8A;
+            }
+
             .left-services, .right-services {
               width: 100%;
               text-align: center !important;
