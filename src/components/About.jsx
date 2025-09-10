@@ -1,128 +1,166 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-function About() {
-  const [showMore, setShowMore] = useState(false);
-  const contentRef = useRef(null);
+// ✅ Import images
+import img1 from "../assets/images/OIP-removebg-preview.png";
+import img2 from "../assets/images/medium-shot-woman-holding-tube.jpg";
+import img3 from "../assets/images/2a125c7aa0d47538b857291fa0901286-removebg-preview.png";
+import doctorImg from "../assets/images/doctor.png";
 
+function About() {
   useEffect(() => {
     AOS.init({ duration: 1000, once: false });
   }, []);
 
+  // ✅ Outer hexagon (responsive frame)
+  const hexStyleOuter = (rotate = 0) => ({
+    clipPath:
+      "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)",
+    width: "clamp(140px, 20vw, 200px)", // 🔥 responsive
+    height: "clamp(160px, 24vw, 220px)", // 🔥 responsive
+    backgroundColor: "#f8f9fa",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 10px 18px rgba(0,0,0,0.2)",
+    transition: "all 0.4s ease",
+    cursor: "pointer",
+    position: "relative",
+    transform: `rotate(${rotate}deg)`,
+  });
+
+  // ✅ Inner hexagon (image inside)
+  const hexStyleInner = (src, rotate = 0, isGirl = false) => ({
+    clipPath:
+      "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)",
+    width: "85%", // 🔥 auto responsive inside outer
+    height: "85%",
+    backgroundImage: `url(${src})`,
+    backgroundSize: "cover",
+    backgroundPosition: isGirl ? "top center" : "center", // 🔥 girl ka face clear
+    transition: "all 0.4s ease",
+    transform: `rotate(-${rotate}deg)`,
+  });
+
   return (
-    <section className="py-5" style={{ backgroundColor: "#f8f9fa" }}>
+    <section className="py-5" style={{ backgroundColor: "#fff" }}>
       <div className="container">
         <div className="row align-items-center">
-          {/* ✅ Left Side Content */}
-          <div
-            className="col-lg-6 mb-4 mb-lg-0 text-center text-lg-start"
-            data-aos="fade-right"
-          >
-            <h2 className="fw-bold mb-3" style={{ color: "#0072ff" }}>
-              About Us
-            </h2>
-            <p className="lead text-muted">
-              At <strong>SpectraCore Analytics</strong>, we empower businesses
-              through <span className="fw-bold">AI</span>,{" "}
-              <span className="fw-bold">Cloud</span>, and{" "}
-              <span className="fw-bold">Data Analytics</span>. Our mission is to
-              deliver intelligent, scalable, and future-ready solutions.
-            </p>
-
-            {/* ✅ Learn More Button */}
-            <button
-              onClick={() => setShowMore(!showMore)}
-              className="btn px-4 py-2 mt-3"
-              style={{
-                background: "linear-gradient(45deg, #00c6ff, #0072ff)",
-                color: "#fff",
-                fontWeight: "600",
-                borderRadius: "8px",
-              }}
-            >
-              {showMore ? "Show Less" : "Learn More"}
-            </button>
-
-            {/* ✅ Smooth Expandable Section */}
+          {/* ✅ Left Side (Hexagon Images with Different Orientation) */}
+          <div className="col-lg-6 mb-4 mb-lg-0 d-flex flex-wrap justify-content-center gap-4">
+            {/* Top Left Hexagon */}
             <div
-              ref={contentRef}
-              className={`extra-content mt-3 ${showMore ? "show" : ""}`}
-              style={{
-                maxHeight: showMore
-                  ? `${contentRef.current?.scrollHeight}px`
-                  : "0px",
-                opacity: showMore ? 1 : 0,
+              style={hexStyleOuter(0)}
+              data-aos="zoom-in"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform =
+                  "translateY(-12px) scale(1.05)";
+                e.currentTarget.style.boxShadow =
+                  "0 18px 35px rgba(0,0,0,0.3), 0 8px 20px rgba(0,114,255,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "rotate(0deg)";
+                e.currentTarget.style.boxShadow = "0 10px 18px rgba(0,0,0,0.2)";
               }}
             >
-              <p className="text-muted">
-                We specialize in end-to-end digital transformation, delivering
-                smart strategies for multiple industries including{" "}
-                <strong>
-                  Healthcare, Construction, FoodTech, and Government
-                </strong>
-                . Our vision is to redefine the future of decision-making using
-                advanced AI-powered tools.
-              </p>
+              <div style={hexStyleInner(img1, 0)}></div>
+            </div>
+
+            {/* Top Right Hexagon (girl image) */}
+            <div
+              style={hexStyleOuter(0)}
+              data-aos="zoom-in"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform =
+                  "translateY(-12px) scale(1.05)";
+                e.currentTarget.style.boxShadow =
+                  "0 18px 35px rgba(0,0,0,0.3), 0 8px 20px rgba(0,114,255,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "rotate(0deg)";
+                e.currentTarget.style.boxShadow = "0 10px 18px rgba(0,0,0,0.2)";
+              }}
+            >
+              <div style={hexStyleInner(img2, 0, true)}></div>
+            </div>
+
+            {/* Bottom Hexagon (rotated) */}
+            <div
+              style={hexStyleOuter(90)}
+              data-aos="zoom-in"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform =
+                  "rotate(90deg) translateY(-12px) scale(1.05)";
+                e.currentTarget.style.boxShadow =
+                  "0 18px 35px rgba(0,0,0,0.3), 0 8px 20px rgba(0,114,255,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "rotate(90deg)";
+                e.currentTarget.style.boxShadow = "0 10px 18px rgba(0,0,0,0.2)";
+              }}
+            >
+              <div style={hexStyleInner(img3, 90)}></div>
             </div>
           </div>
 
-          {/* ✅ Right Side Boxes */}
+          {/* ✅ Right Side (Content) */}
           <div className="col-lg-6" data-aos="fade-left">
-            <div className="row g-3">
+            <h6 className="fw-bold text-uppercase" style={{ color: "#0072ff" }}>
+              About Us
+            </h6>
+            <h2 className="fw-bold mb-3">
+              Experiment With The Best{" "}
+              <span style={{ color: "#0072ff" }}>Lab Test And Service</span>
+            </h2>
+            <p className="text-muted">
+              With a belief that knowledge is power, we connect our patients
+              directly with their results so they have valuable health
+              information when they need it most.
+            </p>
+
+            {/* ✅ Service List */}
+            <div className="row mt-3">
               {[
-                { title: "AI Solutions", desc: "Cutting-edge ML & AI models." },
-                { title: "Cloud Services", desc: "Secure and scalable cloud." },
-                { title: "Analytics", desc: "Data-driven business insights." },
-                { title: "Consulting", desc: "Expert guidance for growth." },
+                "Toxicological assessment",
+                "Basic Pathology Testing",
+                "Diagnostic research Facility",
+                "Biological evaluation",
               ].map((item, i) => (
-                <div key={i} className="col-6 col-md-6 col-sm-12">
-                  <div className="p-4 bg-white shadow rounded h-100 text-center box-hover">
-                    <h6 className="fw-bold" style={{ color: "#0072ff" }}>
-                      {item.title}
-                    </h6>
-                    <p className="text-muted small">{item.desc}</p>
-                  </div>
+                <div
+                  key={i}
+                  className="col-sm-6 mb-2 d-flex align-items-center"
+                >
+                  <span
+                    style={{
+                      color: "#0072ff",
+                      fontSize: "20px",
+                      marginRight: "8px",
+                    }}
+                  >
+                    ✓
+                  </span>
+                  <span className="text-muted">{item}</span>
                 </div>
               ))}
+            </div>
+
+            {/* ✅ Doctor Info */}
+            <div className="d-flex align-items-center mt-4">
+              <img
+                src={doctorImg}
+                alt="Doctor"
+                className="rounded-circle me-3"
+                style={{ width: "60px", height: "60px", objectFit: "cover" }}
+              />
+              <div>
+                <h6 className="fw-bold mb-0">Dr. Abigail George</h6>
+                <p className="text-muted small mb-0">Laboratory Specialist</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* ✅ CSS for Smooth Animation & Hover */}
-      <style>
-        {`
-          .extra-content {
-            overflow: hidden;
-            transition: all 0.6s ease-in-out;
-          }
-
-          /* ✅ Hover effect only on devices that support hover */
-          @media (hover: hover) and (pointer: fine) {
-            .box-hover {
-              transition: all 0.3s ease;
-              cursor: pointer;
-              border: 1px solid #eaeaea;
-            }
-            .box-hover:hover {
-              transform: translateY(-8px);
-              box-shadow: 0 8px 20px rgba(0, 114, 255, 0.3);
-            }
-          }
-
-          /* ✅ Mobile Styling */
-          @media (max-width: 768px) {
-            .box-hover {
-              padding: 20px;
-              border: 1px solid #eaeaea;
-            }
-            h2 {
-              text-align: center;
-            }
-          }
-        `}
-      </style>
     </section>
   );
 }

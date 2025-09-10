@@ -204,9 +204,9 @@ function Navbar() {
             Spectracore <span>Analytics</span>
           </a>
 
-          {/* ✅ Mobile toggle */}
+          {/* ✅ Mobile toggle (3 lines white) */}
           <button
-            className="navbar-toggler"
+            className="navbar-toggler custom-toggler"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#mobileMenu"
@@ -438,6 +438,17 @@ function Navbar() {
             background: #0056b3;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          }
+
+          /* ✅ Custom White Toggler (3 lines) */
+          .custom-toggler {
+            border: none;
+          }
+          .custom-toggler .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' 
+            xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' 
+            stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' 
+            d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
           }
         `}
       </style>
