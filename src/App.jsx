@@ -158,7 +158,6 @@
 // }
 
 // export default App;
-
 import React, { useEffect, useState } from "react";
 import Assistant from "./components/Assistant/Assistant";
 import Navbar from "./components/Navbar";
@@ -186,8 +185,9 @@ function App() {
 
   useEffect(() => {
     AOS.init({
-      duration: 1000,
-      once: true,
+      duration: 1200, // animation duration
+      easing: "ease-in-out",
+      once: false, // 👈 baar-baar trigger hoga jab scroll karoge
     });
 
     const handleScroll = () => {
@@ -212,22 +212,22 @@ function App() {
 
       {/* ✅ Main Sections */}
       <main>
-        <section id="home" className="full-height">
+        <section id="home" className="full-height" data-aos="fade-up">
           <Home />
         </section>
-        <section id="about" className="normal-section" data-aos="fade-up">
+        <section id="about" className="normal-section" data-aos="fade-right">
           <About />
         </section>
-        <section id="services" className="normal-section" data-aos="fade-up">
+        <section id="services" className="normal-section" data-aos="fade-left">
           <Services />
         </section>
-        <section id="contact" className="normal-section" data-aos="fade-up">
+        <section id="contact" className="normal-section" data-aos="fade-right">
           <Contact />
         </section>
-        <section id="faq" className="normal-section" data-aos="fade-up">
+        <section id="faq" className="normal-section" data-aos="fade-left">
           <Faq />
         </section>
-        <section id="location" className="normal-section" data-aos="fade-up">
+        <section id="location" className="normal-section" data-aos="fade-right">
           <Location />
         </section>
       </main>
@@ -238,7 +238,7 @@ function App() {
 
       {/* ✅ Scroll-to-Top Button */}
       {showScroll && (
-        <div className="scroll-to-top" onClick={scrollToTop}>
+        <div className="scroll-to-top" onClick={scrollToTop} data-aos="zoom-in">
           <FaArrowUp />
         </div>
       )}
@@ -257,10 +257,13 @@ function App() {
           box-shadow: 0 4px 12px rgba(0,0,0,0.2);
           transition: transform 0.3s ease, background 0.3s ease;
           z-index: 999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .scroll-to-top:hover {
           background: linear-gradient(135deg, #24B7D3, #30EFAD); /* Gradient */
-          transform: scale(1.1);
+          transform: scale(1.1) rotate(5deg);
         }
       `}</style>
     </>
