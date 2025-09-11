@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 function Contact() {
   const form = useRef();
+  const [activeIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: false });
@@ -29,6 +30,33 @@ function Contact() {
       );
   };
 
+  const faqs = [
+    {
+      q: "What services does SpectraCore Analytics provide?",
+      a: "We provide advanced data analytics, AI-driven solutions, and custom business insights.",
+    },
+    {
+      q: "Who can benefit from your services?",
+      a: "Healthcare, finance, retail, startups, and enterprises across industries.",
+    },
+    {
+      q: "Do you work with international clients?",
+      a: "Yes, we work with global clients and offer tailored solutions.",
+    },
+    {
+      q: "How do you ensure data security and confidentiality?",
+      a: "We follow strict data protection policies and use advanced encryption.",
+    },
+    {
+      q: "Can I request customized solutions?",
+      a: "Yes, we design solutions tailored to your specific needs.",
+    },
+    {
+      q: "What is your typical project workflow?",
+      a: "Our workflow includes consultation, strategy, implementation, and ongoing support.",
+    },
+  ];
+
   return (
     <section
       id="contact"
@@ -36,33 +64,41 @@ function Contact() {
       style={{ backgroundColor: "#f8f9fa" }}
     >
       <div className="container">
-        <div className="row align-items-center">
-          {/* ✅ Left Info */}
+        <div className="row align-items-start">
+          {/* ✅ Left Side FAQ */}
           <div className="col-lg-5 mb-4" data-aos="fade-right">
-            <h2 className="fw-bold mb-3" style={{ color: "#2AD2C1" }}>
-              Get in Touch
+            <h5 className="fw-bold mb-2" style={{ color: "#2AD2C1" }}>
+              FAQ'S
+            </h5>
+            <h2 className="fw-bold mb-4" style={{ color: "#2AD2C1" }}>
+              Frequently Asked Questions
             </h2>
-            <p className="text-muted mb-4">
-              We'd love to hear from you! Reach out with your queries,
-              suggestions, or feedback.
-            </p>
-            <div className="mb-3">
-              <h6 className="fw-semibold" style={{ color: "#2AD2C1" }}>
-                📍 Address
-              </h6>
-              <p className="text-muted">123 SpectraCore St, New Delhi, India</p>
-            </div>
-            <div className="mb-3">
-              <h6 className="fw-semibold" style={{ color: "#2AD2C1" }}>
-                📧 Email
-              </h6>
-              <p className="text-muted">neeraj2005jeena@gmail.com</p>
-            </div>
-            <div className="mb-3">
-              <h6 className="fw-semibold" style={{ color: "#2AD2C1" }}>
-                📞 Phone
-              </h6>
-              <p className="text-muted">+91 98765 43210</p>
+
+            <div className="accordion">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="mb-2 p-3 rounded shadow-sm"
+                  style={{
+                    backgroundColor: "#fff",
+                    cursor: "pointer",
+                    border: "1px solid #e0e0e0",
+                  }}
+                  onClick={() =>
+                    setActiveIndex(activeIndex === index ? null : index)
+                  }
+                >
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span className="fw-semibold">{faq.q}</span>
+                    <span style={{ color: "#2AD2C1", fontWeight: "bold" }}>
+                      {activeIndex === index ? "-" : "+"}
+                    </span>
+                  </div>
+                  {activeIndex === index && (
+                    <p className="mt-2 text-muted">{faq.a}</p>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
@@ -73,7 +109,7 @@ function Contact() {
               style={{ borderTop: "4px solid #2AD2C1" }}
             >
               <h4 className="fw-bold mb-4" style={{ color: "#2AD2C1" }}>
-                Send us a Message
+                Need Help?
               </h4>
               <form ref={form} onSubmit={sendEmail}>
                 <div className="mb-3">
@@ -133,7 +169,7 @@ function Contact() {
                     boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
                   }}
                 >
-                  Send Feedback
+                  Send Message
                 </button>
               </form>
             </div>
@@ -170,121 +206,3 @@ function Contact() {
 }
 
 export default Contact;
-
-// import React, { useRef } from "react";
-// import emailjs from "@emailjs/browser";
-// import "bootstrap/dist/css/bootstrap.min.css";
-
-// function Contact() {
-//   const form = useRef();
-
-//   const sendEmail = (e) => {
-//     e.preventDefault();
-
-//     emailjs
-//       .sendForm(
-//         "service_i333sph", // ✅ Your Service ID
-//         "template_pb4hbyk", // ✅ Your Template ID
-//         form.current,
-//         { publicKey: "FXZ9pkNkJxj6TGcv7" } // ✅ Your Public Key
-//       )
-//       .then(
-//         () => {
-//           alert("✅ Thank you for your feedback!");
-//           form.current.reset();
-//         },
-//         (error) => {
-//           console.error(error);
-//           alert("❌ Something went wrong. Please try again.");
-//         }
-//       );
-//   };
-
-//   return (
-//     <section
-//       id="contact"
-//       className="py-5"
-//       style={{ backgroundColor: "#eef5ff" }}
-//     >
-//       <div className="container">
-//         {/* Title */}
-//         <h2 className="text-center mb-4 fw-bold" style={{ color: "#0072ff" }}>
-//           ✉️ Contact Us
-//         </h2>
-//         <p className="text-center text-muted mb-5">
-//           We’d love to hear your feedback. Please fill out the form below.
-//         </p>
-
-//         {/* Form */}
-//         <div className="row justify-content-center">
-//           <div className="col-lg-6 col-md-8">
-//             <form
-//               ref={form}
-//               onSubmit={sendEmail}
-//               className="p-4 bg-white rounded-4 shadow-lg border"
-//               style={{ borderTop: "6px solid #0072ff" }}
-//             >
-//               {/* Name */}
-//               <div className="mb-3">
-//                 <label className="form-label fw-semibold text-primary">
-//                   Your Name
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="form-control rounded-3"
-//                   name="user_name"
-//                   placeholder="Enter your name"
-//                   required
-//                 />
-//               </div>
-
-//               {/* Email */}
-//               <div className="mb-3">
-//                 <label className="form-label fw-semibold text-primary">
-//                   Your Email
-//                 </label>
-//                 <input
-//                   type="email"
-//                   className="form-control rounded-3"
-//                   name="user_email"
-//                   placeholder="Enter your email"
-//                   required
-//                 />
-//               </div>
-
-//               {/* Feedback */}
-//               <div className="mb-3">
-//                 <label className="form-label fw-semibold text-primary">
-//                   Your Feedback
-//                 </label>
-//                 <textarea
-//                   className="form-control rounded-3"
-//                   name="message"
-//                   rows="5"
-//                   placeholder="Write your feedback here..."
-//                   required
-//                 ></textarea>
-//               </div>
-
-//               {/* Submit */}
-//               <button
-//                 type="submit"
-//                 className="btn w-100 py-2 rounded-3 shadow"
-//                 style={{
-//                   background: "linear-gradient(45deg, #00c6ff, #0072ff)",
-//                   color: "#fff",
-//                   fontWeight: "600",
-//                   letterSpacing: "0.5px",
-//                 }}
-//               >
-//                 🚀 Send Feedback
-//               </button>
-//             </form>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default Contact;

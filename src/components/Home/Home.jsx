@@ -198,7 +198,6 @@
 // }
 
 // export default Home;
-
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -284,7 +283,7 @@ function Home() {
             </p>
 
             {/* Buttons */}
-            <div className="mt-4">
+            <div className="mt-4 button-group">
               <button
                 className="btn get-started-btn me-3"
                 onClick={() =>
@@ -394,6 +393,18 @@ function Home() {
             background: #2AD2C1;
             color: #0b1b36;
             transform: translateY(-2px);
+          }
+
+          /* ✅ Mobile View Button Styling */
+          @media (max-width: 576px) {
+            .button-group {
+              display: flex;
+              flex-direction: column;
+              gap: 12px; /* 👈 Buttons ke beech halka gap */
+            }
+            .button-group .btn {
+              width: 100%; /* 👈 Full width buttons on phone */
+            }
           }
         `}
       </style>

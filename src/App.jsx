@@ -168,7 +168,7 @@ import Services from "./components/services/Services";
 import About from "./components/About";
 import Location from "./components/Location";
 import Contact from "./components/Contact/Contact";
-import Faq from "./components/Faq";
+// import Faq from "./components/Faq";
 // Sidebar & Footer
 import SocialSidebar from "./components/SocialSidebar";
 import Footer from "./components/Footer/Footer";
@@ -224,9 +224,9 @@ function App() {
         <section id="contact" className="normal-section" data-aos="fade-right">
           <Contact />
         </section>
-        <section id="faq" className="normal-section" data-aos="fade-left">
+        {/* <section id="faq" className="normal-section" data-aos="fade-left">
           <Faq />
-        </section>
+        </section> */}
         <section id="location" className="normal-section" data-aos="fade-right">
           <Location />
         </section>
