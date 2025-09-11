@@ -10,6 +10,7 @@ import {
 import doctorImg from "../../assets/images/doctor.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   useEffect(() => {
@@ -42,45 +43,59 @@ const Services = () => {
         >
           {/* Left services */}
           <div className="service-list left-services">
-            <div
-              className="service-item d-flex align-items-center mb-4"
-              data-aos="fade-right"
-            >
-              <div className="icon-box me-3">
-                <FaMicroscope />
+            <Link to="/services/test-results" className="service-link">
+              <div
+                className="service-item d-flex align-items-center mb-4"
+                data-aos="fade-right"
+              >
+                <div className="icon-box me-3">
+                  <FaMicroscope />
+                </div>
+                <div>
+                  <h5 className="fw-bold service-header">
+                    Accurate Test Results
+                  </h5>
+                  <p>
+                    Delivering precise, reliable results for{" "}
+                    <p>confident decision-making.</p>
+                  </p>
+                </div>
               </div>
-              <div>
-                <h5 className="fw-bold">Accurate Test Results</h5>
-                <p>
-                  Delivering precise, reliable results for confident
-                  decision-making.
-                </p>
+            </Link>
+
+            <Link to="/services/lab-experts" className="service-link">
+              <div
+                className="service-item d-flex align-items-center mb-4"
+                data-aos="fade-right"
+              >
+                <div className="icon-box me-3">
+                  <FaUserMd />
+                </div>
+                <div>
+                  <h5 className="fw-bold service-header">
+                    Certified Lab Experts
+                  </h5>
+                  <p>Trusted specialists with proven expertise.</p>
+                </div>
               </div>
-            </div>
-            <div
-              className="service-item d-flex align-items-center mb-4"
-              data-aos="fade-right"
-            >
-              <div className="icon-box me-3">
-                <FaUserMd />
+            </Link>
+
+            <Link to="/services/technology" className="service-link">
+              <div
+                className="service-item d-flex align-items-center"
+                data-aos="fade-right"
+              >
+                <div className="icon-box me-3">
+                  <FaCogs />
+                </div>
+                <div>
+                  <h5 className="fw-bold service-header">
+                    Advanced Technology
+                  </h5>
+                  <p>Cutting-edge equipment for accuracy and speed.</p>
+                </div>
               </div>
-              <div>
-                <h5 className="fw-bold">Certified Lab Experts</h5>
-                <p>Trusted specialists with proven expertise.</p>
-              </div>
-            </div>
-            <div
-              className="service-item d-flex align-items-center"
-              data-aos="fade-right"
-            >
-              <div className="icon-box me-3">
-                <FaCogs />
-              </div>
-              <div>
-                <h5 className="fw-bold">Advanced Technology</h5>
-                <p>Cutting-edge equipment for accuracy and speed.</p>
-              </div>
-            </div>
+            </Link>
           </div>
 
           {/* ✅ Doctor Image in Center */}
@@ -93,42 +108,56 @@ const Services = () => {
 
           {/* Right services */}
           <div className="service-list text-end right-services">
-            <div
-              className="service-item d-flex align-items-center mb-4 justify-content-end"
-              data-aos="fade-left"
-            >
-              <div>
-                <h5 className="fw-bold">Fast Turnaround Time</h5>
-                <p>Quick and reliable processing every time.</p>
+            <Link to="/services/turnaround" className="service-link">
+              <div
+                className="service-item d-flex align-items-center mb-4 justify-content-end"
+                data-aos="fade-left"
+              >
+                <div>
+                  <h5 className="fw-bold service-header">
+                    Fast Turnaround Time
+                  </h5>
+                  <p>Quick and reliable processing every time.</p>
+                </div>
+                <div className="icon-box ms-3">
+                  <FaStopwatch />
+                </div>
               </div>
-              <div className="icon-box ms-3">
-                <FaStopwatch />
+            </Link>
+
+            <Link to="/services/analysis" className="service-link">
+              <div
+                className="service-item d-flex align-items-center mb-4 justify-content-end"
+                data-aos="fade-left"
+              >
+                <div>
+                  <h5 className="fw-bold service-header">
+                    Reliable Data Analysis
+                  </h5>
+                  <p>Accurate insights for better decisions.</p>
+                </div>
+                <div className="icon-box ms-3">
+                  <FaChartLine />
+                </div>
               </div>
-            </div>
-            <div
-              className="service-item d-flex align-items-center mb-4 justify-content-end"
-              data-aos="fade-left"
-            >
-              <div>
-                <h5 className="fw-bold">Reliable Data Analysis</h5>
-                <p>Accurate insights for better decisions.</p>
+            </Link>
+
+            <Link to="/services/trusted" className="service-link">
+              <div
+                className="service-item d-flex align-items-center justify-content-end"
+                data-aos="fade-left"
+              >
+                <div>
+                  <h5 className="fw-bold service-header">
+                    Trusted By Professionals
+                  </h5>
+                  <p>Preferred by top healthcare providers.</p>
+                </div>
+                <div className="icon-box ms-3">
+                  <FaCheckCircle />
+                </div>
               </div>
-              <div className="icon-box ms-3">
-                <FaChartLine />
-              </div>
-            </div>
-            <div
-              className="service-item d-flex align-items-center justify-content-end"
-              data-aos="fade-left"
-            >
-              <div>
-                <h5 className="fw-bold">Trusted By Professionals</h5>
-                <p>Preferred by top healthcare providers.</p>
-              </div>
-              <div className="icon-box ms-3">
-                <FaCheckCircle />
-              </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -141,19 +170,27 @@ const Services = () => {
             border-radius: 20px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             overflow: hidden;
-            padding: 75px 50px 45px 50px; 
+            padding: 75px 50px 45px 50px; /* 🔥 bottom kam kiya */
+          }
+          .left-services h5, .left-services p { color: #000; }
+          .right-services h5, .right-services p { color: #fff; }
+
+          .service-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
           }
 
-          /* Left side (white background → black text) */
-          .left-services h5, 
-          .left-services p {
-            color: #000;
+          .service-item {
+            position: relative;
+            z-index: 20;
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 8px;
+            transition: background 0.3s ease;
           }
-
-          /* Right side (gradient background → white text) */
-          .right-services h5, 
-          .right-services p {
-            color: #fff;
+          .service-item:hover {
+            background: rgba(255, 255, 255, 0.1);
           }
 
           .icon-box {
@@ -166,69 +203,58 @@ const Services = () => {
             justify-content: center;
             transition: transform 0.3s ease;
           }
-
           .right-services .icon-box {
             background: rgba(255,255,255,0.15);
             color: #fff;
-            border: 2px solid #00FB8A; /* Accent border */
+            border: 2px solid #00FB8A;
           }
-
           .left-services .icon-box {
             background: rgba(0,0,0,0.08);
-            color: #2AD2C1; /* Primary teal */
+            color: #2AD2C1;
+          }
+          .icon-box:hover { transform: scale(1.1); }
+
+          .doctor-wrapper { 
+            z-index: 1;
+            transform: translate(-50%, -50%) !important;
+          }  
+          .doctor-img { 
+            max-height: 480px;   /* 🔥 slightly bigger */
+            object-fit: contain;
+            margin-bottom: 0;    /* 🔥 cut hone se bacha liya */
           }
 
-          .icon-box:hover {
-            transform: scale(1.1);
+          /* ✅ Header link styling */
+          .service-header {
+            transition: color 0.3s ease;
+          }
+          .service-header:hover {
+            color: #00FB8A;
           }
 
-          .doctor-wrapper { z-index: 10; }
-          .doctor-img { max-height: 450px; object-fit: contain; }
-
-          /* ✅ Tablet fix (768px – 991px) */
           @media (max-width: 991px) and (min-width: 768px) {
             .services-card {
               flex-direction: column !important;
               padding: 50px 30px;
               background: linear-gradient(135deg, #24B7D3, #30EFAD); 
             }
-
             .doctor-wrapper {
               position: relative !important;
               top: auto !important;
               left: auto !important;
               transform: none !important;
-              margin: 30px auto;
+              margin: 30px auto 0 auto;
               text-align: center;
             }
-
-            .doctor-img {
-              max-height: 300px;
-              width: auto;
-            }
-
-            .service-list {
-              text-align: center !important;
-              margin-bottom: 25px;
-            }
-
-            .service-item {
-              justify-content: center !important;
-            }
-
-            .left-services h5, 
-            .left-services p,
-            .right-services h5, 
-            .right-services p {
-              color: #fff !important;
-            }
+            .doctor-img { max-height: 320px; width: auto; }
+            .service-list { text-align: center !important; margin-bottom: 25px; }
+            .service-item { justify-content: center !important; }
+            .left-services h5, .left-services p,
+            .right-services h5, .right-services p { color: #fff !important; }
           }
 
-          /* ✅ Mobile fix (<768px) */
           @media (max-width: 768px) {
-            .doctor-wrapper {
-              display: none !important;
-            }
+            .doctor-wrapper { display: none !important; }
             .service-item {
               flex-direction: column !important;
               justify-content: center !important;
@@ -236,9 +262,7 @@ const Services = () => {
               text-align: center !important;
               margin-bottom: 25px;
             }
-            .service-item .icon-box {
-              margin-bottom: 12px;
-            }
+            .service-item .icon-box { margin-bottom: 12px; }
           }
         `}
       </style>
