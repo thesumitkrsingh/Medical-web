@@ -230,8 +230,8 @@ function App() {
           element={
             <>
               <TestResults />
-              <SocialSidebar />
-              <Footer />
+              {/* <SocialSidebar />
+              <Footer /> */}
             </>
           }
         />
@@ -240,8 +240,8 @@ function App() {
           element={
             <>
               <LabExperts />
-              <SocialSidebar />
-              <Footer />
+              {/* <SocialSidebar />
+              <Footer /> */}
             </>
           }
         />
@@ -250,8 +250,8 @@ function App() {
           element={
             <>
               <Technology />
-              <SocialSidebar />
-              <Footer />
+              {/* <SocialSidebar />
+              <Footer /> */}
             </>
           }
         />
@@ -260,8 +260,8 @@ function App() {
           element={
             <>
               <Turnaround />
-              <SocialSidebar />
-              <Footer />
+              {/* <SocialSidebar />
+              <Footer /> */}
             </>
           }
         />
@@ -270,8 +270,8 @@ function App() {
           element={
             <>
               <Analysis />
-              <SocialSidebar />
-              <Footer />
+              {/* <SocialSidebar />
+              <Footer /> */}
             </>
           }
         />
@@ -280,8 +280,8 @@ function App() {
           element={
             <>
               <Trusted />
-              <SocialSidebar />
-              <Footer />
+              {/* <SocialSidebar />
+              <Footer /> */}
             </>
           }
         />
