@@ -131,11 +131,12 @@ const Footer = () => {
             <div className="footer-section">
               <h4>Quick Links</h4>
               <ul className="footer-links">
+                <li><a href="#home">Home</a></li>
+                 <li><a href="#service">Services</a></li>
                 <li><a href="#about">About Us</a></li>
-                <li><a href="#expertise">Our Expertise</a></li>
-                <li><a href="#mission">Our Mission</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact Us</a></li>
+                 <li><a href="#location">Location</a></li>
+
               </ul>
             </div>
 
