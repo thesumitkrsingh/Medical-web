@@ -62,7 +62,7 @@ function SocialSidebar() {
         {open && (
           <div className="mobile-icons">
             <a
-              href="https://wa.me/919815723616"
+              href="https://wa.me/919910127966"
               target="_blank"
               rel="noopener noreferrer"
               className="social-mobile whatsapp"

@@ -324,16 +324,18 @@ const Assistant = () => {
               disabled={isTyping}
             />
             <button
-              onClick={handleSendMessage}
-              disabled={!inputMessage.trim() || isTyping}
-            >
-              <i className="fas fa-paper-plane"></i>
-            </button>
+  onClick={handleSendMessage}
+  disabled={!inputMessage.trim() || isTyping}
+>
+  Enter
+</button>
+            
           </div>
         </div>
       )}
     </>
   );
 };
+
 
 export default Assistant;

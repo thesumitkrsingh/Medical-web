@@ -45,6 +45,52 @@
     transform-style: preserve-3d;
     animation: floatNewsletter 6s ease-in-out infinite;
 }
+.msme-logo {
+  max-width: 120px;
+  height: auto;
+  margin-top: 15px;
+  filter: grayscale(30%);
+}
+.brand-name {
+  display: inline-flex;
+  background: linear-gradient(135deg, #24B7D3, #30EFAD);
+  border-radius: 20px;
+  padding: 6px 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  align-items: center;
+}
+
+.spectracore {
+  color: white;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.analytics {
+  background: linear-gradient(135deg, #038099, #08583c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  position: relative;
+}
+
+.analytics::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: #00FB8A;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 
 @keyframes floatNewsletter {
 

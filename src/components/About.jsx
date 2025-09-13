@@ -152,7 +152,7 @@ function About() {
                 style={{ width: "60px", height: "60px", objectFit: "cover" }}
               />
               <div>
-                <h6 className="fw-bold mb-0">Dr. Abigail George</h6>
+                <h6 className="fw-bold mb-0">Dr. Tanu Mittal</h6>
                 <p className="text-muted small mb-0">Laboratory Specialist</p>
               </div>
             </div>

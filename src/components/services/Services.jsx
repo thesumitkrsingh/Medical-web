@@ -336,7 +336,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="services-section py-5">
+    <section className="services-section py-5" id="service">
       <div className="container">
         {/* Heading */}
         <p className="text-center text-teal-500 fw-bold">
