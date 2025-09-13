@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { FaWhatsapp, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaWhatsapp, FaFacebookF, FaLinkedinIn, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 function SocialSidebar() {
   const [open, setOpen] = useState(false);
@@ -13,7 +12,7 @@ function SocialSidebar() {
         style={{ right: "20px", zIndex: 2000 }}
       >
         <ul className="list-unstyled m-0 p-0 d-flex flex-column gap-3">
-          <li>
+          <li className="social-item">
             <a
               href="https://wa.me/919815723616"
               target="_blank"
@@ -21,10 +20,10 @@ function SocialSidebar() {
               className="social-hover whatsapp"
             >
               <FaWhatsapp size={20} />
-              <span>WhatsApp</span>
+              <span className="social-text">WhatsApp</span>
             </a>
           </li>
-          <li>
+          <li className="social-item">
             <a
               href="https://facebook.com"
               target="_blank"
@@ -32,10 +31,10 @@ function SocialSidebar() {
               className="social-hover facebook"
             >
               <FaFacebookF size={18} />
-              <span>Facebook</span>
+              <span className="social-text">Facebook</span>
             </a>
           </li>
-          <li>
+          <li className="social-item">
             <a
               href="https://linkedin.com"
               target="_blank"
@@ -43,7 +42,7 @@ function SocialSidebar() {
               className="social-hover linkedin"
             >
               <FaLinkedinIn size={18} />
-              <span>LinkedIn</span>
+              <span className="social-text">LinkedIn</span>
             </a>
           </li>
         </ul>
@@ -55,43 +54,51 @@ function SocialSidebar() {
         style={{ right: "10px", zIndex: 2000 }}
       >
         {/* Toggle Button */}
-        <button className="toggle-btn mb-3" onClick={() => setOpen(!open)}>
+        <button className="toggle-btn" onClick={() => setOpen(!open)}>
           {open ? <FaChevronRight /> : <FaChevronLeft />}
         </button>
 
-        {/* Mobile Icons */}
-        <div className={`mobile-icons ${open ? "show" : ""}`}>
-          <a
-            href="https://wa.me/919815723616"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-mobile whatsapp"
-          >
-            <FaWhatsapp size={22} />
-          </a>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-mobile facebook"
-          >
-            <FaFacebookF size={20} />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-mobile linkedin"
-          >
-            <FaLinkedinIn size={20} />
-          </a>
-        </div>
+        {/* Mobile Icons - Only show when open is true */}
+        {open && (
+          <div className="mobile-icons">
+            <a
+              href="https://wa.me/919815723616"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-mobile whatsapp"
+            >
+              <FaWhatsapp size={22} />
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-mobile facebook"
+            >
+              <FaFacebookF size={20} />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-mobile linkedin"
+            >
+              <FaLinkedinIn size={20} />
+            </a>
+          </div>
+        )}
       </div>
 
       {/* ✅ CSS Styling */}
       <style>
         {`
           /* Desktop icons */
+          .social-item {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+          }
+          
           .social-hover {
             display: flex;
             align-items: center;
@@ -102,24 +109,29 @@ function SocialSidebar() {
             padding: 10px 15px;
             border-radius: 30px 0 0 30px;
             transition: all 0.4s ease;
-            transform: translateX(40%);
+            width: 50px;
+            overflow: hidden;
+            position: relative;
           }
 
-          .social-hover span {
+          .social-text {
             opacity: 0;
             white-space: nowrap;
-            transition: opacity 0.4s ease, margin-left 0.4s ease;
+            transition: all 0.4s ease;
+            position: absolute;
+            right: 45px;
+            width: 0;
           }
 
           .social-hover:hover {
-            transform: translateX(0);
+            width: 150px;
             box-shadow: 0 6px 15px rgba(0,0,0,0.25);
             background: #00FB8A; /* Accent */
           }
 
-          .social-hover:hover span {
+          .social-hover:hover .social-text {
             opacity: 1;
-            margin-left: 5px;
+            width: auto;
           }
 
           /* Mobile Sidebar Toggle Button */
@@ -135,6 +147,8 @@ function SocialSidebar() {
             justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.25);
             transition: all 0.3s ease;
+            z-index: 2001;
+            position: relative;
           }
 
           .toggle-btn:hover {
@@ -147,13 +161,13 @@ function SocialSidebar() {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
+            margin-top: 15px;
+            animation: fadeIn 0.3s ease;
           }
 
-          .mobile-icons.show {
-            max-height: 200px;
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
           }
 
           .social-mobile {
@@ -166,6 +180,16 @@ function SocialSidebar() {
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            animation: slideIn 0.3s ease;
+          }
+
+          .social-mobile:nth-child(1) { animation-delay: 0.1s; }
+          .social-mobile:nth-child(2) { animation-delay: 0.2s; }
+          .social-mobile:nth-child(3) { animation-delay: 0.3s; }
+
+          @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
           }
 
           .social-mobile:hover {

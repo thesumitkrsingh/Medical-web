@@ -313,42 +313,125 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    date: "",
+    time: "",
+    message: ""
+  });
+  const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ✅ Scroll effect sirf home page par apply hoga
+  // Services data
+  const services = [
+    "Research & Consulting",
+    "Analytical Testing & Method Development",
+    "Computational Chemistry & Modeling",
+    "Process & Scale-Up Solutions",
+    "Data Analysis & Visualization",
+    "Publication & Reporting Support"
+  ];
+
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       if (location.pathname === "/") {
         setScrolled(window.scrollY > 50);
       } else {
-        setScrolled(true); // ✅ Agar home page nahi hai toh hamesha dark navbar
+        setScrolled(true);
       }
     };
 
-    handleScroll(); // ✅ Initial check (refresh par bhi sahi dikhe)
-
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
+
+  // Menu state tracking
+  useEffect(() => {
+    const handleShow = () => setMenuOpen(true);
+    const handleHide = () => setMenuOpen(false);
+    
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) {
+      mobileMenu.addEventListener('show.bs.offcanvas', handleShow);
+      mobileMenu.addEventListener('hide.bs.offcanvas', handleHide);
+    }
+    
+    return () => {
+      if (mobileMenu) {
+        mobileMenu.removeEventListener('show.bs.offcanvas', handleShow);
+        mobileMenu.removeEventListener('hide.bs.offcanvas', handleHide);
+      }
+    };
+  }, []);
 
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
 
     if (location.pathname !== "/") {
-      // ✅ Agar service detail page pe ho toh homepage + hash pe bhejo
       navigate(`/#${sectionId}`);
     } else {
-      // ✅ Agar already homepage pe ho toh smooth scroll karo
       const section = document.getElementById(sectionId);
       if (section) {
         section.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
 
-    // ✅ Mobile menu close
     const closeBtn = document.querySelector("#mobileMenu .btn-close");
     if (closeBtn) closeBtn.click();
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Create WhatsApp message
+    const message = `New Appointment Request:%0A%0A
+Name: ${formData.name}%0A
+Email: ${formData.email}%0A
+Phone: ${formData.phone}%0A
+Service: ${formData.service}%0A
+Date: ${formData.date}%0A
+Time: ${formData.time}%0A
+Message: ${formData.message}`;
+
+    // Open WhatsApp with pre-filled message
+    window.open(`https://wa.me/919815723616?text=${message}`, '_blank');
+    
+    // Reset form and show success message
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      service: "",
+      date: "",
+      time: "",
+      message: ""
+    });
+    
+    setSubmitted(true);
+    
+    // Hide success message after 5 seconds
+    setTimeout(() => {
+      setSubmitted(false);
+      // Close modal
+      const modal = document.getElementById('appointmentModal');
+      const modalInstance = bootstrap.Modal.getInstance(modal);
+      modalInstance.hide();
+    }, 5000);
   };
 
   return (
@@ -359,24 +442,28 @@ function Navbar() {
         }`}
       >
         <div className="container-fluid d-flex align-items-center justify-content-between px-3 px-md-4">
-          {/* ✅ Brand Name */}
+          {/* Brand Name */}
           <a className="navbar-brand fw-bold brand-text" href="/">
             <span className="brand-teal">Spectracore</span>{" "}
             <span className="brand-white">Analytics</span>
           </a>
 
-          {/* ✅ Mobile toggle */}
+          {/* Mobile toggle with animated hamburger */}
           <button
-            className="navbar-toggler custom-toggler"
+            className={`navbar-toggler custom-toggler ${menuOpen ? "open" : ""}`}
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#mobileMenu"
             aria-controls="mobileMenu"
+            aria-expanded={menuOpen}
+            aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="hamburger-box">
+              <span className="hamburger-inner"></span>
+            </span>
           </button>
 
-          {/* ✅ Desktop menu */}
+          {/* Desktop menu */}
           <div
             className="collapse navbar-collapse justify-content-center"
             id="navbarNav"
@@ -398,7 +485,7 @@ function Navbar() {
             </ul>
           </div>
 
-          {/* ✅ Right side button (Desktop only) */}
+          {/* Right side button (Desktop only) */}
           <div className="d-none d-md-flex ms-3">
             <button
               className="btn contact-btn"
@@ -411,7 +498,7 @@ function Navbar() {
         </div>
       </nav>
 
-      {/* ✅ Mobile Offcanvas */}
+      {/* Mobile Offcanvas */}
       <div
         className="offcanvas offcanvas-end bg-dark text-white"
         tabIndex="-1"
@@ -443,7 +530,7 @@ function Navbar() {
               </li>
             ))}
           </ul>
-          {/* ✅ Mobile Button */}
+          {/* Mobile Button */}
           <button
             className="btn contact-btn w-100"
             data-bs-toggle="modal"
@@ -454,10 +541,136 @@ function Navbar() {
         </div>
       </div>
 
-      {/* ✅ Appointment Modal */}
-      {/* ... (same as tumhara code) ... */}
+      {/* Appointment Modal */}
+      <div
+        className="modal fade"
+        id="appointmentModal"
+        tabIndex="-1"
+        aria-labelledby="appointmentModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-lg modal-dialog-centered">
+          <div className="modal-content p-3 rounded-3">
+            <div className="modal-header border-0">
+              <h5
+                className="modal-title fw-bold modal-title-teal"
+                id="appointmentModalLabel"
+              >
+                Book an Appointment
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              {submitted ? (
+                <div className="alert alert-success text-center" role="alert">
+                  <i className="fas fa-check-circle me-2"></i>
+                  Thank you for your appointment request! We'll contact you shortly.
+                </div>
+              ) : (
+                <form className="row g-3" onSubmit={handleSubmit}>
+                  <div className="col-md-6">
+                    <label className="form-label">Full Name *</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter your name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label">Email *</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="Enter your email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label">Phone *</label>
+                    <input
+                      type="tel"
+                      className="form-control"
+                      placeholder="Enter phone number"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label">Service *</label>
+                    <select 
+                      className="form-select"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      <option value="">Select Service</option>
+                      {services.map((service, index) => (
+                        <option key={index} value={service}>{service}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label">Preferred Date *</label>
+                    <input 
+                      type="date" 
+                      className="form-control" 
+                      name="date"
+                      value={formData.date}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label">Preferred Time *</label>
+                    <input 
+                      type="time" 
+                      className="form-control" 
+                      name="time"
+                      value={formData.time}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="col-12">
+                    <label className="form-label">Message</label>
+                    <textarea
+                      className="form-control"
+                      rows="3"
+                      placeholder="Any additional details"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                    ></textarea>
+                  </div>
+                  <div className="col-12 text-end">
+                    <button type="submit" className="btn contact-btn">
+                      <i className="fab fa-whatsapp me-2"></i>
+                      Submit via WhatsApp
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
 
-      {/* ✅ Styles */}
+      {/* Styles */}
       <style>
         {`
           body {
@@ -504,14 +717,71 @@ function Navbar() {
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
           }
           .modal-title-teal { color: #2AD2C1 !important; }
-          .custom-toggler { border: none; }
-          .custom-toggler .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30'
-            xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)'
-            stroke-width='2' stroke-linecap='round' stroke-miterlimit='10'
-            d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+          .custom-toggler { 
+            border: none;
+            background: transparent !important;
+            width: 30px;
+            height: 30px;
+            position: relative;
+            padding: 0;
+          }
+          .hamburger-box {
+            width: 30px;
+            height: 24px;
+            display: inline-block;
+            position: relative;
+          }
+          .hamburger-inner {
+            display: block;
+            top: 50%;
+            margin-top: -2px;
+          }
+          .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 3px;
+            position: absolute;
+            transition: transform 0.3s ease;
+          }
+          .hamburger-inner::before, .hamburger-inner::after {
+            content: "";
+            display: block;
+          }
+          .hamburger-inner::before {
+            top: -10px;
+          }
+          .hamburger-inner::after {
+            bottom: -10px;
+          }
+          
+          /* Hamburger animation to X when open */
+          .custom-toggler.open .hamburger-inner {
+            transform: rotate(45deg);
+          }
+          .custom-toggler.open .hamburger-inner::before {
+            top: 0;
+            transform: rotate(0);
+            opacity: 0;
+          }
+          .custom-toggler.open .hamburger-inner::after {
+            bottom: 0;
+            transform: rotate(-90deg);
           }
           .text-accent { color: #00FB8A !important; }
+          
+          /* Form styling */
+          .form-label {
+            font-weight: 500;
+            color: #0b1b36;
+          }
+          
+          .alert-success {
+            background: linear-gradient(45deg, #2AD2C1, #30EFAD);
+            color: #0b1b36;
+            border: none;
+            font-weight: 500;
+          }
         `}
       </style>
     </>
