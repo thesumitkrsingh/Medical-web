@@ -396,43 +396,45 @@ function Navbar() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Create WhatsApp message
-    const message = `New Appointment Request:%0A%0A
-Name: ${formData.name}%0A
-Email: ${formData.email}%0A
-Phone: ${formData.phone}%0A
-Service: ${formData.service}%0A
-Date: ${formData.date}%0A
-Time: ${formData.time}%0A
-Message: ${formData.message}`;
+  e.preventDefault();
+  
+  // Create WhatsApp message with proper formatting
+  const message = `New Appointment Request:%0A%0A
+*Name:* ${formData.name}%0A
+*Email:* ${formData.email}%0A
+*Phone:* ${formData.phone}%0A
+*Service:* ${formData.service}%0A
+*Preferred Date:* ${formData.date}%0A
+*Preferred Time:* ${formData.time}%0A
+*Message:* ${formData.message || 'No additional message provided'}`;
 
-    // Open WhatsApp with pre-filled message
-    window.open(`https://wa.me/919815723616?text=${message}`, '_blank');
-    
-    // Reset form and show success message
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      service: "",
-      date: "",
-      time: "",
-      message: ""
-    });
-    
-    setSubmitted(true);
-    
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-      setSubmitted(false);
-      // Close modal
-      const modal = document.getElementById('appointmentModal');
-      const modalInstance = bootstrap.Modal.getInstance(modal);
+  // Open WhatsApp with pre-filled message
+  window.open(`https://wa.me/917696875238?text=${encodeURIComponent(message)}`, '_blank');
+  
+  // Reset form and show success message
+  setFormData({
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    date: "",
+    time: "",
+    message: ""
+  });
+  
+  setSubmitted(true);
+  
+  // Hide success message after 5 seconds
+  setTimeout(() => {
+    setSubmitted(false);
+    // Close modal
+    const modal = document.getElementById('appointmentModal');
+    const modalInstance = bootstrap.Modal.getInstance(modal);
+    if (modalInstance) {
       modalInstance.hide();
-    }, 5000);
-  };
+    }
+  }, 5000);
+};
 
   return (
     <>

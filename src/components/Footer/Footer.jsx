@@ -101,22 +101,27 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="footer-main">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-section">
-              <div className="footer-brand">
-                <div className="footer-logo">
-                  <i className="fas fa-microscope"></i>
-                  <span>SpectraCore Analytics</span>
-                </div>
-                <p className="footer-description">
-                  Advanced analytical solutions for chemical innovation and research excellence.
-                </p>
-
-              </div>
-            </div>
-
+     <div className="footer-main">
+  <div className="container">
+    <div className="footer-content">
+      <div className="footer-section">
+        <div className="footer-brand">
+          <div className="footer-logo">
+            <i className="fas fa-microscope"></i>
+            <span className="brand-name">
+              <span className="spectracore">SpectraCore</span>
+              <span className="analytics">Analytics</span>
+            </span>
+          </div>
+          <strong>Dr. Tanu Mittal</strong>
+          <p className="footer-description">
+            Advanced analytical solutions for chemical innovation and research excellence.
+          </p>
+          <img src="./src/assets/images/msme.png" alt="MSME Registered" className="msme-logo" />
+        </div>
+      </div>
+    
+  
             <div className="footer-section">
               <h4>Our Services</h4>
               <ul className="footer-links">
@@ -132,10 +137,10 @@ const Footer = () => {
               <h4>Quick Links</h4>
               <ul className="footer-links">
                 <li><a href="#home">Home</a></li>
-                 <li><a href="#service">Services</a></li>
+                <li><a href="#service">Services</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact Us</a></li>
-                 <li><a href="#location">Location</a></li>
+                <li><a href="#location">Location</a></li>
 
               </ul>
             </div>
@@ -145,11 +150,18 @@ const Footer = () => {
               <div className="contact-info">
                 <div className="contact-item">
                   <i className="fas fa-map-marker-alt"></i>
-                  <span>123 Science Drive, Innovation Park, CA 94305</span>
+                 
+                 <div><strong>Dr .Tanu Mittal</strong><p>Main Unit H2, Old SBRA,Indian Institute of Technology Kanpur
+                    Kanpur, Uttar Pradesh 208016
+                    India .</p>
+                  </div> 
+                  
+                  
+
                 </div>
                 <div className="contact-item">
                   <i className="fas fa-phone"></i>
-                  <span>(555) 123-4567</span>
+                  <span>+91 9910127966</span>
                 </div>
                 <div className="contact-item">
                   <i className="fas fa-envelope"></i>
