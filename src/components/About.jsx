@@ -114,9 +114,7 @@ function About() {
               <span style={{ color: "#00FB8A" }}>Lab Test And Service</span>
             </h2>
             <p className="text-muted">
-              With a belief that knowledge is power, we connect our patients
-              directly with their results so they have valuable health
-              information when they need it most.
+              SpectraCore Analytics is committed to delivering world-class, end-to-end solutions in research consulting, analytical testing, computational modeling, and process scale-up to accelerate innovation from lab to plant.
             </p>
 
             {/* ✅ Service List */}

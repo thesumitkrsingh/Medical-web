@@ -26,18 +26,17 @@ function Location() {
           {/* Left Side - Details */}
           <div className="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
             <h2 className="fw-bold mb-3" style={{ color: "#2AD2C1" }}>
-              Our Location
+              Our Offices
             </h2>
             <p className="lead text-muted mb-4">
-              At <strong>SpectraCore Analytics</strong>, we are committed to
-              delivering world-class solutions in AI, Data Analytics, and Cloud.
+              At <strong>SpectraCore Analytics</strong>, We deliver integrated R&D solutions—from analytical testing and computational chemistry to process scale-up and data intelligence—turning scientific innovation into commercial reality.
               <br />
               <br />
-              📍 <strong>Office Address:</strong> Punjab, Hoshiarpur, India
+              📍 <strong>Office Address:</strong> N/A
               <br />
-              📧 <strong>Email:</strong> neeraj2005jeena@gmail.com
+              📧 <strong>Email:</strong> Info@spectracoreAnalytics.com
               <br />
-              ☎️ <strong>Phone:</strong> +91 98765 43210
+              ☎️ <strong>Phone:</strong> +91 ***** ****
             </p>
 
             {/* ✅ Button (Teal → Green Gradient) */}

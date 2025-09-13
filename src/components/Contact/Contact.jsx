@@ -109,8 +109,11 @@ function Contact() {
               style={{ borderTop: "4px solid #2AD2C1" }}
             >
               <h4 className="fw-bold mb-4" style={{ color: "#2AD2C1" }}>
-                Need Help?
+                Contact Us
               </h4>
+              <p className="fw-bold mb-4" style={{ color: "black" }}>
+                If You Don't Find Any Relevent Question/Answer Fill Free To Contact Us
+              </p>
               <form ref={form} onSubmit={sendEmail}>
                 <div className="mb-3">
                   <label
